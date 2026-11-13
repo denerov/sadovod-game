@@ -1,0 +1,7 @@
+import {MILL} from './economy.js?v=210';
+export const FACTORIES={'wheat-mill':{...MILL,size:2,canvasHeight:120,description:'Превращает пшеницу в муку. Очередь до 5 партий.'}};
+export const FACTORY_QUEUE=5;
+export function restoreFactories(saved={}){const out={};for(const [id,f]of Object.entries(saved||{})){if(!f||typeof f!=='object')continue;out[id]={ready:Number.isSafeInteger(f.ready)&&f.ready>=0?f.ready:0,jobs:Array.isArray(f.jobs)?f.jobs.filter(j=>Number.isFinite(j.remaining)&&j.remaining>=0&&Number.isSafeInteger(j.output)&&j.output>0).slice(0,FACTORY_QUEUE).map(j=>({remaining:j.remaining,output:j.output})):[]};}return out;}
+export function queueBatch(state,id){if(typeof id!=='string'||!id||state.stock.wheat<MILL.input)return false;const f=state.factories[id]??{ready:0,jobs:[]};if(f.jobs.length>=FACTORY_QUEUE)return false;state.stock.wheat-=MILL.input;f.jobs.push({remaining:MILL.minutes*60000,output:MILL.yield});state.factories[id]=f;return true;}
+export function advanceFactories(state,ms,activeIds){if(!Number.isFinite(ms)||ms<=0)return;for(const id of new Set(activeIds)){const f=state.factories[id];if(!f)continue;let left=ms;while(f.jobs.length&&left>0){const j=f.jobs[0],step=Math.min(left,j.remaining);j.remaining-=step;left-=step;if(j.remaining<=0){f.ready+=j.output;f.jobs.shift();}else break;}}}
+export function collectFlour(state,id){const f=state.factories[id];if(!f?.ready)return false;const amount=f.ready;state.stock.flour+=amount;f.ready=0;return amount;}

@@ -1,0 +1,87 @@
+[hidden]{display:none!important}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.enter-farm{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 32px;border:2px solid #b69254;border-radius:12px;background:#174b31;color:#fff4df;font-size:23px;text-decoration:none}.enter-farm:focus-visible{outline:3px solid #966923;outline-offset:3px}
+body[data-screen=character]{overflow:auto;display:block}body[data-screen=character] .stage{display:none}
+.character-screen{width:100%;min-height:100svh;display:grid;place-items:center;background:#183525;color:#153d28;font-family:Georgia,'Times New Roman',serif}
+.character-stage{position:relative;width:min(100vw,calc(100svh * 16 / 9));aspect-ratio:16/9}
+.character-scenery{position:absolute;inset:0;background:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/character-scene.webp') center/100% 100% no-repeat}
+.avatar-area{position:absolute;left:14.22%;bottom:5.56%;width:30.08%;height:84.72%}
+.avatar{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:0;filter:blur(3px);transform-origin:50% 100%;transition:opacity .4s ease,filter .4s ease}.avatar.active{opacity:1;filter:none}
+
+.character-form{position:absolute;left:52.6%;top:22.7%;width:42.3%;height:69.2%}.character-form h1{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+.character-form fieldset{border:0;padding:0;margin:0;min-width:0;min-height:0}.character-form button,.edit-character{font-family:inherit;cursor:pointer;color:#153d28;touch-action:manipulation}
+.gender-group{position:absolute;top:0;left:0;width:100%;height:19%;display:flex;gap:2.5%}.gender-group button{width:48.75%;border:0;border-radius:12px;background:transparent}.gender-group span{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+.gender-group button[aria-pressed=true]{box-shadow:inset 0 0 0 3px #175437,inset 0 0 16px #cba74733}
+.name-group{position:absolute;top:27.8%;left:1.5%;width:94.5%;height:9%;}.name-group label,.outfit-group legend{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}.name-group input{width:100%;height:100%;min-height:44px;border:0;background:#fff4df;color:#473522;padding:6px 10px;font:clamp(16px,1.5vw,24px) Georgia,serif;border-radius:7px}
+.outfit-group{position:absolute;top:46.7%;left:0;width:100%;height:36.5%}.outfit-buttons{height:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.3%}.outfit-buttons button{display:grid;grid-template-rows:minmax(0,1fr) 1.35em;gap:4px;min-height:0;font-size:clamp(14px,1.04vw,20px);border:1px solid #b69254;border-radius:12px;background:linear-gradient(#fff7e6,#f4e5c7);padding:6px 3px 10px;min-width:0}.outfit-buttons img{display:block;height:100%;max-height:100%;width:100%;min-height:0;object-fit:contain}.outfit-buttons span{font-size:clamp(14px,1.04vw,20px);line-height:1.15;white-space:nowrap;align-self:end;text-align:center}.outfit-buttons button[aria-pressed=true]{border-color:#175437;box-shadow:inset 0 0 0 2px #175437;background:#edf1d7}
+.start-game{position:absolute;left:6%;top:85.5%;width:85.8%;height:14%;border:0;border-radius:28px;background:transparent}.start-game span{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}.start-game:active{background:#d7ad3e22}.start-game:disabled{cursor:wait;opacity:.65}
+#character-error{position:absolute;left:0;top:80%;width:100%;margin:0;text-align:center;color:#873522;font-size:14px;line-height:1.2;background:#fff4df}
+button:focus-visible,input:focus-visible{outline:3px solid #966923;outline-offset:3px}.character-form h1:focus{outline:none}
+.character-confirmation{position:absolute;left:50%;top:6%;width:47%;height:89%;padding:12% 5%;border:3px double #b69254;border-radius:30px;background:#fff4df;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}.character-confirmation h2{font-size:clamp(24px,3vw,48px);margin:0}.character-confirmation p{margin:0;font-size:20px;overflow-wrap:anywhere}.player-name{font-weight:bold}.edit-character{min-height:48px;padding:12px 24px;border:2px solid #b69254;border-radius:12px;background:#174b31;color:#fff4df;font-size:18px}.save-status{line-height:1.5}
+@media(max-width:900px),(max-height:500px){
+ html:has(body[data-screen=character]){height:auto;overflow:auto}body[data-screen=character]{height:auto;min-height:100svh}
+ .character-screen{display:block;background:#fff3dc}.character-stage{width:100%;aspect-ratio:auto;min-height:100svh;padding:calc(16px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom));display:flex;flex-direction:column;align-items:center}
+ .character-scenery{inset:0 0 auto;height:clamp(300px,43svh,430px);background-size:auto 190%;background-position:left bottom;box-shadow:inset 0 -30px 30px -16px #fff3dc}
+ .avatar-area{position:relative;left:auto;bottom:auto;width:200px;height:280px;flex-shrink:0;margin:25px 0 0}.avatar{object-fit:contain}
+ .character-form{position:relative;left:auto;top:auto;width:min(100%,520px);height:auto;border:3px double #b69254;border-radius:20px;background:#fff4df;padding:20px 14px;box-shadow:0 4px 20px #42352220}
+ .character-form h1{position:static;width:auto;height:auto;clip-path:none;overflow:visible;font-size:clamp(23px,6vw,32px);line-height:1.2;margin:0 0 16px;text-align:center}
+ .gender-group{position:static;height:auto;gap:10px}.gender-group button{width:50%;min-height:48px;border:1px solid #b69254;background:#f4e5c7;padding:10px}.gender-group span{position:static;width:auto;height:auto;clip-path:none;font-size:17px}.gender-group button[aria-pressed=true]{background:#175437;color:#fff4df}
+ .name-group{position:static;width:100%;height:auto;margin-top:16px}.name-group label,.outfit-group legend{position:static;width:auto;height:auto;clip-path:none;overflow:visible;font-size:17px;line-height:1.3;margin-bottom:8px;display:block}.name-group input{height:48px;border:1px solid #b69254;font-size:18px;padding:10px 12px}
+ .outfit-group{position:static;height:auto;width:100%;margin-top:16px!important}.outfit-buttons{height:142px;gap:6px}.outfit-buttons button{padding:5px 1px 9px;border-radius:9px}.outfit-buttons img{max-height:104px}.outfit-buttons span{font-size:14px;letter-spacing:-.3px}
+ #character-error{position:static;min-height:18px;font-size:14px;margin:12px 0 4px}.start-game{position:static;width:100%;height:52px;min-height:52px;background:linear-gradient(#215c3d,#103c27);border:2px solid #b69254;border-radius:13px;color:#fff4df!important}.start-game span{position:static;width:auto;height:auto;clip-path:none;font-size:23px}
+ .character-confirmation{position:relative;left:auto;top:auto;width:min(100%,520px);height:auto;min-height:260px;padding:30px 20px;border-radius:20px}.character-confirmation p{font-size:18px}.character-confirmation h2{font-size:28px}
+}
+@media(max-width:430px){.outfit-buttons{grid-template-columns:repeat(2,minmax(0,1fr));height:auto;gap:8px}.outfit-buttons button{height:135px}.outfit-buttons span{font-size:15px;letter-spacing:0}}
+@media(max-width:360px){.character-stage{padding-left:10px;padding-right:10px}.character-form{padding:18px 10px}}
+@media(prefers-reduced-motion:reduce){.avatar{animation:none;transition:none;filter:none}}
+
+/* Coordinates use the approved 1672×941 artwork, independently for every control. */
+@media(min-width:901px) and (min-height:501px){
+ .character-stage{width:min(100vw,calc(100svh * 1672 / 941));aspect-ratio:1672/941;container-type:inline-size}
+ .character-form{inset:0;left:0;top:0;width:100%;height:100%}
+ .gender-group,.outfit-group,.outfit-buttons{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;min-height:0}
+ .gender-group button{position:absolute;left:var(--left);top:22.74%;width:var(--width);height:12.96%;border-radius:1.1cqw;pointer-events:auto}
+ [data-gender=woman]{--left:52.69%;--width:19.92%}[data-gender=man]{--left:73.38%;--width:21.29%}
+ .gender-group button[aria-pressed=true]{box-shadow:inset 0 0 0 2px #175437}
+ .name-group{left:53.53%;top:42.72%;width:40.19%;height:5.63%;border-radius:.45cqw;container-type:inline-size;overflow:hidden}
+ .name-group::before{content:'';position:absolute;inset:0;background-image:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/character-scene.webp');background-size:440cqw auto;background-position:-294.7cqw -108cqw;pointer-events:none}
+ .name-group input{position:relative;min-height:0;background:transparent;padding:0 3cqw;outline-offset:-3px;border-radius:0}
+ .outfit-buttons button{position:absolute;left:var(--left);top:55.15%;width:var(--width);height:25.08%;padding:.4cqw .2cqw .5cqw;border-radius:.7cqw;pointer-events:auto;overflow:hidden}
+ [data-outfit=linen]{--left:52.57%;--width:9.87%}[data-outfit=overalls]{--left:63.04%;--width:10.17%}[data-outfit=coat]{--left:73.92%;--width:10.17%}[data-outfit=cardigan]{--left:84.81%;--width:10.11%}
+ .outfit-buttons img{max-height:100%}
+ .start-game{left:55.62%;top:82.62%;width:35.94%;height:9.14%;border-radius:2cqw}
+ #character-error{left:52.6%;top:93%;width:42.3%;font-size:14px}
+ button:focus-visible,input:focus-visible{outline-offset:-3px}
+}
+
+/* Welcome uses the approved portrait garden with native, personalized controls. */
+.save-status:empty{display:none}
+.character-confirmation .player-name{font-weight:inherit}
+.character-confirmation .welcome-greeting{font-size:22px;line-height:1.4}
+.character-confirmation .welcome-story{font-size:18px;line-height:1.5;max-width:34ch}
+.character-confirmation .edit-character{background:none;border:0;border-radius:0;color:#174b31;text-decoration:underline;text-underline-offset:4px;font-size:17px;padding:8px 12px}
+.is-welcome .character-scenery{background-image:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/welcome-garden.webp')}
+.is-welcome .character-stage{overflow:hidden}
+@media(min-width:901px) and (min-height:501px){
+ .is-welcome .character-scenery{right:49%;background-size:100% auto;background-position:center top}
+ .is-welcome .avatar-area{left:10%;bottom:6%;height:75%;width:auto;aspect-ratio:450/724;filter:drop-shadow(0 5px 3px #29200f40)}
+ .is-welcome .character-confirmation{left:52%;top:7%;width:45%;height:86%;padding:clamp(16px,3svh,30px) 28px;gap:clamp(12px,2svh,24px);border-radius:28px;overflow-y:auto;justify-content:safe center;min-height:0;box-shadow:0 0 0 5px #fff4df66}
+ .is-welcome .character-confirmation h2{font-size:clamp(28px,3vw,46px);line-height:1.1}
+ .is-welcome .enter-farm{width:85%;max-width:360px;min-height:60px;flex-shrink:0}
+}
+@media(max-width:900px),(max-height:500px){
+ .character-stage{padding-top:0;padding-bottom:calc(20px + env(safe-area-inset-bottom));gap:0}
+ .character-scenery{height:min(112vw,460px);background-image:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/welcome-garden.webp');background-size:100% auto;background-position:center top;box-shadow:inset 0 -20px 20px -15px #fff3dc}
+ .avatar-area{width:auto;height:min(82vw,335px);aspect-ratio:450/724;margin:min(20vw,82px) 0 min(10vw,41px);filter:drop-shadow(0 4px 2px #29200f30)}
+ .avatar{object-fit:contain}
+ .character-form{margin-top:0;padding:16px 14px}
+ .character-form h1{font-size:26px;margin-bottom:12px}
+ .name-group{margin-top:12px}.outfit-group{margin-top:12px!important}
+ .outfit-buttons{grid-template-columns:repeat(2,minmax(0,1fr));height:auto;gap:8px}
+ .outfit-buttons button{height:118px}.outfit-buttons img{max-height:85px}.outfit-buttons span{font-size:15px;letter-spacing:0}
+ .character-confirmation{margin-top:0;padding:24px 18px;gap:18px;min-height:0;box-shadow:0 3px 12px #46331518}
+ .character-confirmation h2{font-size:clamp(26px,7vw,34px);line-height:1.15}
+ .character-confirmation .welcome-greeting{font-size:19px;line-height:1.4}
+ .character-confirmation .welcome-story{font-size:17px;line-height:1.45}
+ .is-welcome .enter-farm{width:90%;max-width:360px;font-size:24px;min-height:56px}
+ .character-confirmation .save-status{font-size:15px}
+}

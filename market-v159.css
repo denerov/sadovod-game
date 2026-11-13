@@ -1,0 +1,301 @@
+@font-face{font-family:'Sadovod Market';src:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-fonts/regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Sadovod Market';src:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-fonts/bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap;}
+/* Single market stylesheet. Approved controls; full illustrations; intrinsic content sizing. */
+
+.shop-dialog:not([open]){display:none;}
+.shop-dialog[open]{display:flex;flex-direction:column;gap:8px;}
+.shop-dialog::backdrop{background:#132f22dc;}
+.shop-dialog *{box-sizing:border-box;}
+.shop-dialog button,.shop-dialog input,.shop-dialog select{font:inherit;touch-action:manipulation;}
+.shop-dialog button{cursor:pointer;min-height:44px;}
+.shop-dialog button:disabled{cursor:not-allowed;opacity:.5;}
+.shop-dialog :focus-visible{outline:3px solid #947321;outline-offset:3px;}
+.shop-dialog img{object-fit:contain;max-width:100%;}
+
+
+
+
+
+.shop-dialog .market-purse img{width:32px;height:32px;}
+.shop-dialog .market-close{display:grid;place-items:center;flex:none;width:46px;height:46px;border:3px double #edc967;border-radius:10px;background:linear-gradient(145deg,#c34e29,#922719);color:#fff6df;box-shadow:inset 0 0 0 1px #713313,0 2px 3px #57371635;padding:0;font:32px/1 'Sadovod Market',Georgia,serif;}
+.shop-dialog .market-banner{display:flex;align-items:center;gap:15px;flex:none;}
+.shop-dialog h2{font:700 28px/1.15 'Sadovod Market',Georgia,serif;color:var(--ink);margin:0;}
+.shop-dialog .market-tabs,.shop-dialog .market-subcategories{display:flex;align-items:stretch;gap:7px;flex:none;min-width:0;overflow:auto;scrollbar-width:thin;scrollbar-color:#b99651 transparent;padding:2px;}
+
+.shop-dialog .market-tab[aria-pressed=true]{background:linear-gradient(#246541,#0b3d25);color:#fff7dd;border-color:#b8882e;box-shadow:inset 0 0 0 2px #e9c976;}
+.shop-dialog .category-icon{display:inline-block;width:26px;height:26px;flex:none;overflow:hidden;background:none;mask:none;vertical-align:middle;}
+.shop-dialog .market-subcategories .market-tab{flex:0 0 auto;}
+.shop-dialog .market-filters{display:flex;align-items:center;gap:8px;flex:none;}
+.shop-dialog .currency-filters{display:flex;gap:5px;}
+.shop-dialog .currency-filters button{display:flex;align-items:center;justify-content:center;gap:5px;padding:5px 10px;min-height:44px;white-space:nowrap;border:1px solid #c6a774;border-radius:12px;background:#fff8e8;color:var(--ink);font-size:14px;}
+.shop-dialog .currency-filters button[aria-pressed=true]{background:#185235;color:#fff4d9;}
+.shop-dialog .currency-filters img{width:24px;height:24px;}
+.shop-dialog .availability-check{font:20px Arial;}
+
+.shop-dialog .market-search svg{width:20px;height:20px;flex:none;}
+
+.shop-dialog .market-search:focus-within{outline:2px solid #678044;}
+.shop-dialog .market-sort>span{display:none;}
+.shop-dialog .market-sort select{min-height:44px;max-width:170px;padding:5px 9px;border:1px solid #c6ab7b;border-radius:12px;background:#fff8e8;color:var(--ink);font-size:14px;}
+.shop-dialog .product-grid{display:block;flex:1 1 0%;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;scrollbar-color:#bc9b55 #fff6e3;padding:3px 5px 12px;overflow-anchor:none;}
+.shop-dialog .catalog-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:max-content;align-items:stretch;align-content:start;gap:12px;height:auto;min-height:min-content;}
+
+
+.shop-dialog .catalog-composition{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-height:inherit;background:#f8efd9;}
+.shop-dialog .catalog-object{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:contain;object-position:center;padding:24px 14px 34px;z-index:1;filter:drop-shadow(0 4px 3px #20351b33);}
+.shop-dialog .catalog-output{overflow:hidden;position:absolute;z-index:2;right:8px;bottom:9px;width:25%;height:25%;object-fit:contain;filter:drop-shadow(0 2px 2px #27311444);}
+
+
+.shop-dialog .market-close svg{display:block;width:24px;height:24px;flex:none;}
+
+.shop-dialog .catalog-category{display:flex;align-items:center;gap:6px;font:14px/1.2 'Sadovod Market',Georgia,serif;color:#375239;font-size:13px;}
+.shop-dialog .catalog-category .category-icon{width:22px;height:22px;}
+
+
+
+.shop-dialog .catalog-buy-options{flex-shrink:0;display:flex;align-items:stretch;gap:8px;margin-top:auto;min-width:0;}
+.shop-dialog .purchase-button,.shop-dialog .market-back,.shop-dialog .seed-sow{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 14px;border:3px double #d6af53;border-radius:12px;background:linear-gradient(150deg,#237141,#0b3d25);color:#fff4d5;font:700 16px/1.15 'Sadovod Market',Georgia,serif;box-shadow:inset 0 0 0 1px #fae6a67a,0 2px 3px #57371625;text-decoration:none;}
+.shop-dialog .currency-purchase{flex:1;min-width:0;min-height:48px;padding:7px 8px;gap:7px;font:700 21px/1.1 Georgia,'Times New Roman',serif;white-space:nowrap;text-shadow:0 1px 1px #10321d;}
+.shop-dialog .currency-purchase img{width:30px;height:30px;flex:none;object-fit:contain;}
+.shop-dialog .purchase-button:not(:disabled):hover{filter:brightness(1.1);}
+.shop-dialog .currency-purchase:not(:disabled):active{box-shadow:inset 0 2px 5px #061c16;}
+.shop-dialog .catalog-lock{margin:0;font:14px/1.25 'Sadovod Market',Georgia,serif;color:#7b5827;}
+.shop-dialog .seed-reserve{display:flex;gap:5px;align-items:center;font:14px/1.25 'Sadovod Market',Georgia,serif;}
+.shop-dialog .seed-reserve .seed-sow{padding:5px 8px;font-size:14px;}
+.shop-dialog .seed-quantity{display:grid;grid-template-columns:34px 32px 34px 1fr;align-items:center;gap:5px;margin:8px 0;padding:6px;border:1px solid #c9a86788;border-radius:10px;background:#fff6df99;color:#4d321b;font:700 15px/1 'Sadovod Market',Georgia,serif}.shop-dialog .seed-quantity button{width:34px;height:34px;padding:0;border:1px solid #a67632;border-radius:8px;background:#f8e6b9;color:#4d321b;font:700 22px/1 Georgia,serif;cursor:pointer}.shop-dialog .seed-quantity button:disabled{opacity:.38;cursor:default}.shop-dialog .seed-quantity strong{text-align:center;font-size:18px}.shop-dialog .seed-quantity span{text-align:right;font-weight:400}.shop-dialog .seed-reserve{justify-content:space-between}.shop-dialog .seed-reserve .seed-sow:disabled{opacity:.42}
+.shop-dialog .catalog-stock{font-weight:bold;margin-top:auto;}
+.shop-dialog .catalog-rarity{display:inline-block;color:#fff1bf;background:#24533c;border:1px solid #c49d45;border-radius:8px;padding:5px 8px;font:14px/1.15 'Sadovod Market',Georgia,serif;}
+.shop-dialog .catalog-art>.catalog-rarity{position:absolute;left:7px;bottom:7px;max-width:calc(100% - 14px);z-index:3;}
+
+.shop-dialog .market-foot .seed-sow{padding:3px 10px;font-size:14px;}
+.shop-dialog .market-result{display:flex;align-items:center;gap:7px;}
+.shop-dialog .market-empty{grid-column:1/-1;text-align:center;padding:30px;}
+.shop-dialog .market-empty svg{width:40px;height:40px;}
+.shop-dialog .grain-watering{display:flex;align-items:center;gap:10px;margin:0;padding:8px 12px;border:1px solid #cbbb80;border-radius:10px;background:#edf1d9;font-size:14px;}
+.shop-dialog .grain-watering>svg{width:28px;height:28px;flex:none;}
+.shop-dialog .grain-watering strong,.shop-dialog .grain-watering span{display:block;}
+.shop-dialog .product-detail-header{display:flex;align-items:center;gap:15px;padding-bottom:10px;border-bottom:1px solid #d1b582;flex:none;}
+.shop-dialog .product-detail-header h2{flex:1;}
+.shop-dialog .product-detail-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;}
+.shop-dialog .product-detail-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,1fr);gap:24px;padding:16px 8px;align-items:center;min-height:100%;}
+.shop-dialog .product-detail-gallery{min-width:0;}
+.shop-dialog .product-detail-image{display:block;width:100%;height:min(65dvh,700px);object-fit:contain;overflow:hidden;border-radius:16px;}
+.shop-dialog .product-detail-image>.catalog-composition{height:100%;min-height:280px;}
+.shop-dialog .large .catalog-object{padding:40px 35px 65px;}
+.shop-dialog .large .catalog-output{width:22%;height:22%;bottom:18px;right:18px;}
+.shop-dialog .product-detail-views{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin-top:10px;}
+.shop-dialog .product-detail-views button{min-width:44px;min-height:44px;padding:7px 12px;border:1px solid #bea063;border-radius:11px;background:#fff8e7;color:var(--ink);}
+.shop-dialog .product-detail-views button[aria-pressed=true]{background:#215b3a;color:#fff4d5;}
+.shop-dialog .product-detail-description{font:16px/1.5 'Sadovod Market',Georgia,serif;}
+.shop-dialog .product-detail-description h3{font-size:30px;line-height:1.15;margin:5px 0 12px;}
+.shop-dialog .product-detail-description h4{font-size:20px;margin:18px 0 8px;}
+.shop-dialog .product-detail-description p{margin:10px 0;}
+.shop-dialog .product-detail-description ol{padding-left:22px;}
+.shop-dialog .product-detail-description li{margin-bottom:8px;}
+.shop-dialog .product-detail-recipe{background:#edf0d9;border:1px solid #ccd1ad;border-radius:12px;padding:12px 15px;}
+.shop-dialog .product-detail-purchase{margin-top:18px;padding-top:14px;border-top:1px solid #d1b582;}
+.shop-dialog .product-detail-purchase .currency-purchase{min-height:54px;font-size:25px;}
+.shop-dialog .product-detail-purchase .currency-purchase img{width:36px;height:36px;}
+.shop-dialog .market-back::before{content:'';width:24px;height:24px;flex:none;background:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/ui-v109/back-arrow.svg') center/contain no-repeat;}
+.shop-dialog[data-screen=land]{gap:10px;}
+.shop-dialog[data-screen=land] .land-heading{display:flex;align-items:center;gap:20px;flex:none;}
+.shop-dialog[data-screen=land] .market-back{position:static;margin:0;flex:none;}
+.land-heading h2{font:700 clamp(24px,3vw,42px)/1.1 'Sadovod Market',Georgia,serif;margin:0;}
+.land-detail-art{flex:1;min-height:0;overflow:hidden;border-radius:12px;}
+.land-detail-art>img{display:block;width:100%;height:100%;object-fit:cover;object-position:65% center;}
+.land-detail-purchase{display:grid;grid-template-columns:1fr 1fr 1.1fr;align-items:center;gap:16px;flex:none;}
+.land-detail-purchase>div{padding:10px 14px;border:1px solid #dbc69f;border-radius:10px;background:#fff4dd80;}
+.land-detail-purchase span{display:block;font-size:16px;margin-bottom:6px;}
+.land-detail-purchase strong{display:flex;align-items:center;gap:8px;font-size:25px;}
+.land-detail-purchase strong img{width:36px;height:36px;object-fit:contain;}
+.shop-dialog .land-detail-purchase .purchase-button{width:100%;min-height:54px;margin:0;font-size:24px;}
+.land-detail-status{flex:none;margin:0;text-align:center;min-height:18px;font-size:14px;}
+
+
+
+
+
+
+.shop-dialog .market-subcategories .market-back{white-space:nowrap;flex:none;margin:0;padding:4px 10px;}
+@media(max-width:1000px){
+
+
+
+.shop-dialog .market-sort{display:none;}
+
+
+
+.shop-dialog .currency-purchase{font-size:18px;gap:4px;padding:6px;}
+.shop-dialog .currency-purchase img{width:26px;height:26px;}
+}
+@media(max-width:650px){
+
+
+
+
+.shop-dialog .market-close{margin-left:auto;}
+
+
+.shop-dialog .market-purse img{width:20px;height:20px;}
+.shop-dialog h2{font-size:21px;}
+
+.shop-dialog .market-banner{gap:8px;}
+.shop-dialog .market-banner:has(.market-back) h2{font-size:16px;}
+.shop-dialog .market-back{font-size:14px;padding:5px 9px;}
+
+.shop-dialog .market-filters{flex-wrap:wrap;gap:5px;}
+.shop-dialog .currency-filters{width:100%;}
+.shop-dialog .currency-filters button{flex:1;padding:5px 7px;}
+
+.shop-dialog .catalog-list{display:flex;flex-direction:column;gap:10px;}
+.shop-dialog .catalog-list>.catalog-card{flex:0 0 auto;width:100%;}
+.shop-dialog .product-grid{padding:2px 1px 12px;scrollbar-gutter:auto;}
+
+
+
+.shop-dialog .catalog-category{font-size:12px;}
+.shop-dialog .catalog-category .category-icon{width:17px;height:17px;}
+
+
+.shop-dialog .catalog-buy-options{gap:4px;flex-wrap:nowrap;margin-top:auto;padding-top:6px;}
+.shop-dialog .currency-purchase{min-width:58px;font-size:17px;padding:6px 4px;min-height:44px;gap:3px;}
+.shop-dialog .currency-purchase img{width:23px;height:23px;}
+.shop-dialog .catalog-object{padding:12px 6px;}
+.shop-dialog .catalog-output{width:31%;height:24%;}
+
+.shop-dialog .product-detail-header{gap:8px;}
+.shop-dialog .product-detail-header h2{font-size:19px;}
+.shop-dialog .product-detail-layout{grid-template-columns:minmax(0,1fr);gap:12px;padding:8px;}
+.shop-dialog .product-detail-image{height:45dvh;min-height:280px;}
+.shop-dialog .product-detail-description h3{font-size:27px;}
+.shop-dialog[open]{gap:4px;}
+.shop-dialog .market-tabs,.shop-dialog .market-subcategories{gap:4px;padding:0;scrollbar-width:none;}
+.shop-dialog .category-icon{width:21px;height:21px;}
+
+
+
+
+
+.shop-dialog .catalog-composition{min-height:230px;}
+.shop-dialog .grain-watering{font-size:13px;padding:5px;}
+}
+@media(max-height:550px) and (min-width:651px){
+
+
+
+
+
+
+.shop-dialog .market-purse img{width:25px;height:25px;}
+.shop-dialog .market-banner{position:static;max-width:none;}
+.shop-dialog .market-banner h2{font-size:17px;}
+.shop-dialog .market-banner:has(.market-back) h2{display:none;}
+.shop-dialog .market-banner .market-back{font-size:14px;padding:4px 7px;}
+
+.shop-dialog .market-tabs{padding:0 2px;}
+.shop-dialog .market-filters{gap:6px;}
+.shop-dialog .currency-filters button{font-size:14px;padding:4px 6px;}
+
+
+
+
+
+
+.shop-dialog .product-detail-layout{padding:6px;gap:16px;}
+.shop-dialog .product-detail-image{height:62dvh;min-height:180px;}
+
+
+
+
+}
+@media(max-height:540px){
+.shop-dialog[data-screen=land]{gap:5px;}
+.shop-dialog[data-screen=land] .market-top{flex:none;}
+.land-heading h2{font-size:24px;}
+.land-detail-purchase{gap:8px;}
+.land-detail-purchase>div{padding:4px 8px;}
+.land-detail-purchase span{font-size:14px;margin:0;}
+.land-detail-purchase strong{font-size:19px;}
+.land-detail-purchase strong img{width:25px;height:25px;}
+.shop-dialog .land-detail-purchase .purchase-button{min-height:44px;font-size:19px;}
+.land-detail-status{font-size:13px;min-height:0;}
+.land-detail-status:empty{display:none;}
+}
+@media(orientation:portrait) and (max-width:600px){
+.land-heading{flex-wrap:wrap;gap:6px!important;}
+.land-detail-purchase{grid-template-columns:1fr 1fr;}
+.land-detail-purchase .purchase-button{grid-column:1/-1;}
+.land-detail-purchase strong{font-size:19px;}
+}
+
+.shop-dialog{text-size-adjust:100%;-webkit-text-size-adjust:100%;--paper:#fff6e3;--ink:#4a2e17;--gold:#c99535;--green:#145032;box-sizing:border-box;position:fixed;inset:0;width:min(1520px,calc(100vw - 12px));height:calc(100dvh - 12px);max-width:none;max-height:none;margin:auto;padding:12px 20px 10px;border:4px double var(--gold);border-radius:18px;background:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-v86/corner-tl.webp') left top/240px auto no-repeat,url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-v86/corner-br.webp') right bottom/240px auto no-repeat,var(--paper);color:var(--ink);font:16px/1.3 'Sadovod Market',Georgia,serif;text-align:left;overflow:hidden;box-shadow:inset 0 0 0 2px #fffbe9,0 18px 60px #10251870;}
+.shop-dialog .market-top{display:flex;align-items:center;gap:12px;flex:none;}
+.shop-dialog .market-logo{width:195px;height:52px;object-fit:contain;}
+.shop-dialog .market-top h2{font:700 clamp(22px,2.3vw,36px)/1.05 'Sadovod Market',Georgia,serif;flex:1;margin:0;min-width:0;}
+.shop-dialog .market-balances{display:flex;gap:8px;margin-left:auto;}
+.shop-dialog .market-purse{display:flex;align-items:center;justify-content:center;gap:5px;padding:4px 8px;border:1px solid #d8bf84;border-radius:9px;background:#fff5df;white-space:nowrap;font-size:18px;}
+.shop-dialog .market-tab{flex:1 0 auto;display:flex;align-items:center;justify-content:center;gap:6px;padding:3px 8px;min-height:38px;border:1px solid #d2b883;border-radius:7px;background:linear-gradient(#fffbed,#f6e8cb);color:var(--ink);white-space:nowrap;font-size:16px;}
+.shop-dialog .catalog-eye{position:absolute;z-index:3;right:1px;top:1px;width:44px;height:44px;min-height:44px;display:grid;place-items:center;padding:0;border:0;border-radius:50%;background:transparent;color:#ffe5a0;box-shadow:none;}
+.shop-dialog .catalog-eye svg{position:relative;z-index:1;display:block;width:17px;height:17px;}
+.shop-dialog .catalog-body{height:auto;max-height:none;overflow:visible;min-width:0;display:flex;flex-direction:column;padding:10px 10px 10px 4px;gap:4px;}
+.shop-dialog .catalog-body h3{font:700 clamp(24px,2.5vw,37px)/.98 'Sadovod Market',Georgia,serif;margin:0;color:var(--ink);overflow-wrap:break-word;}
+.shop-dialog .catalog-summary{font:16px/1.18 'Sadovod Market',Georgia,serif;margin:0;color:#574027;}
+.shop-dialog .catalog-recipe{font:14px/1.2 'Sadovod Market',Georgia,serif;color:#675231;border-top:1px solid #d8bd84;padding-top:5px;margin:3px 0;}
+.shop-dialog .catalog-scene{display:block;width:100%;height:100%;max-height:none;object-fit:contain;overflow:hidden;mask-image:linear-gradient(to right,#000 0%,#000 89%,transparent 100%);}
+.shop-dialog .catalog-illustration{width:100%;aspect-ratio:1;align-self:start;position:relative;line-height:0;background:var(--paper);}
+.shop-dialog .catalog-art{position:relative;display:flex;min-width:0;min-height:0;align-self:stretch;overflow:hidden;align-items:flex-start;background:var(--paper);}
+.shop-dialog .catalog-card{display:grid;grid-template-columns:54% minmax(0,1fr);grid-template-rows:max-content;min-width:0;min-height:0;border:3px double #c49437;border-radius:15px;background:var(--paper);box-shadow:inset 0 0 0 2px #fffbe9,0 2px 4px #73521c24;overflow:hidden;position:relative;height:auto;max-height:none;contain:none;align-self:stretch;}
+.shop-dialog .market-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex:none;font-size:14px;min-height:36px;}
+.shop-dialog .market-search{display:flex;align-items:center;gap:6px;flex:1;min-width:0;min-height:36px;padding:0 10px;border:1px solid #c6ab7b;border-radius:8px;background:#fffaf0;}
+.shop-dialog .market-search input{width:100%;min-width:0;height:36px;padding:0;background:none;border:0;color:var(--ink);font-size:16px;}
+.shop-dialog .catalog-eye::before{content:'';position:absolute;inset:7px;border:3px double #d2ad51;border-radius:50%;background:linear-gradient(#246844,#0a3e26);box-shadow:0 1px 3px #49331340;}
+.shop-dialog .catalog-illustration::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:26px;background:linear-gradient(transparent,var(--paper));pointer-events:none;}
+.shop-dialog .catalog-category::after{content:'';height:1px;background:#d8bd84;flex:1;margin-left:5px;}
+.shop-dialog .market-toolbar{display:flex;align-items:center;gap:8px;flex:none;min-width:0;}
+.shop-dialog .market-filter-popover{position:relative;flex:none;}
+.shop-dialog .market-filter-popover summary{display:flex;align-items:center;justify-content:center;min-height:38px;min-width:80px;padding:4px 10px;list-style:none;cursor:pointer;border:1px solid #c6ab7b;border-radius:8px;background:#fff8e8;}
+.shop-dialog .market-filter-popover summary::-webkit-details-marker{display:none;}
+.shop-dialog .market-filter-options{position:absolute;right:0;top:100%;z-index:10;padding:12px;border:2px solid #c6ab7b;border-radius:10px;background:var(--paper);box-shadow:0 6px 18px #30220e50;}
+.shop-dialog .market-filter-options .market-sort{display:block;margin-top:8px;}
+.shop-dialog .market-pagination{display:flex;align-items:center;justify-content:center;gap:8px;}
+.shop-dialog .market-pagination button{min-width:36px;min-height:36px;padding:0;border:1px solid #c8a05b;border-radius:8px;background:linear-gradient(#f9e6b6,#d2b273);color:#fff8df;font-size:27px;line-height:1;}
+.shop-dialog .market-pagination span{white-space:nowrap;color:#155132;font-weight:700;}
+.shop-dialog .stock-capacity{display:grid;grid-template-columns:minmax(150px,1fr) minmax(160px,2fr) auto;align-items:center;gap:12px;padding:9px 12px;border:1px solid #c8a05b;border-radius:12px;background:linear-gradient(135deg,#fff9e9,#eee0b9);box-shadow:inset 0 1px #fff,0 2px 6px #51381020;color:#284b2e;}
+.shop-dialog .stock-capacity-copy{display:flex;justify-content:space-between;gap:8px;font-size:14px;}
+.shop-dialog .stock-capacity-copy span{font-weight:800;}.shop-dialog .stock-capacity-copy strong{white-space:nowrap;}
+.shop-dialog .stock-capacity-track{height:12px;overflow:hidden;border:1px solid #7e6a3b;border-radius:999px;background:#d6c9a4;box-shadow:inset 0 1px 3px #44320f55;}
+.shop-dialog .stock-capacity-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#4ca94e,#8fca4e);}
+.shop-dialog .stock-capacity button{min-height:34px;padding:5px 12px;border:1px solid #9c6c22;border-radius:9px;background:linear-gradient(#f7d982,#c89431);color:#3f2c10;font-weight:800;cursor:pointer;}
+.shop-dialog .stock-capacity button:disabled{filter:grayscale(.7);opacity:.55;cursor:default;}
+@media(max-width:650px){
+ .shop-dialog{width:100%;height:100dvh;padding:6px 9px;border-radius:14px;background-size:145px auto,145px auto;}
+ .shop-dialog[open]{gap:4px;}
+ .shop-dialog .market-top{gap:6px;flex-wrap:wrap;}
+ .shop-dialog .market-logo{width:112px;height:35px;}
+ .shop-dialog .market-top h2{font-size:21px;}
+ .shop-dialog .market-balances{order:3;flex-basis:100%;margin:0;gap:5px;}
+ .shop-dialog .market-purse{flex:1;font-size:14px;padding:0 4px;border:0;background:none;}
+ .shop-dialog .market-purse img{width:19px;height:19px;}
+ .shop-dialog .market-tab{font-size:14px;min-height:36px;padding:3px 6px;}
+ .shop-dialog .market-subcategories .market-back{min-height:36px;}
+ .shop-dialog .catalog-body{padding:9px 7px 8px 2px;gap:4px;}
+ .shop-dialog .catalog-body h3{font-size:25px;line-height:1;}
+ .shop-dialog .catalog-summary{font-size:14px;line-height:1.15;}
+ .shop-dialog .catalog-recipe{font-size:13px;line-height:1.15;margin:2px 0;padding-top:4px;}
+ .shop-dialog .market-foot{font-size:12px;min-height:36px;}
+ .shop-dialog .market-foot>[data-journal]{display:none;}
+ .shop-dialog .market-result>.category-icon{display:none;}
+ .shop-dialog .market-search input{font-size:16px;}
+ .shop-dialog .currency-purchase{font-size:17px;min-height:40px;}
+ .shop-dialog .stock-capacity{grid-template-columns:1fr auto;gap:6px 9px;padding:7px 9px;}
+ .shop-dialog .stock-capacity-track{grid-column:1/-1;grid-row:2;}
+ .shop-dialog .stock-capacity button{grid-column:2;grid-row:1;}
+}
+@media(min-width:651px) and (max-height:550px){
+ .shop-dialog{padding:5px 10px;}
+ .shop-dialog .market-logo{width:120px;height:36px;}
+ .shop-dialog .market-top h2{font-size:23px;}
+ .shop-dialog .market-purse{font-size:14px;}
+ .shop-dialog .market-tab{min-height:32px;font-size:14px;}
+ .shop-dialog .catalog-body h3{font-size:25px;}
+}

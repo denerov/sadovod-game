@@ -1,0 +1,7 @@
+// Approved 29 Oct 2026. Art references retained separately; no free residents.
+export const premiumScene=id=>({src:`https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/premium-v207/${id}-0.webp`,width:1280,height:1280});
+export const PREMIUM_PENS={
+ pen_undyandyolik:{name:'Дворец Ундяндёликов',category:'structures',subcategory:'pens',cost:null,coal:90,size:3,canvasHeight:150,rotationLocked:false,placementRule:'land',icon:premiumScene('pen_undyandyolik').src,description:'Роскошный загон для 3 Ундяндёликов: три места под навесом, плиточный двор, ограда, поилка и кормушка. Покупается пустым. Ундяндёлики приобретаются и заселяются отдельно.'},
+};
+export const PREMIUM_FENCE={name:'Ограда Ундяндёлика',category:'decor',subcategory:'fences',cost:null,coal:10,size:1,canvasHeight:1280*32/890,placement:'boundary',allowedSurfaces:['grass','path','soil','bed'],icon:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/premium-v207/fence-0.webp',description:'Ограда из светлого камня с бирюзовыми вставками и золотыми перьями. Секции соединяются по границам клеток.'};
+export const PREMIUM_PAVING={name:'Плитка Ундяндёлика',cost:500,coal:null,description:'Светлый мрамор и бирюзовая плитка с золотыми швами. Можно укладывать под постройками и декором. Цена за одну клетку.',scene:{src:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/premium-v207/paving.webp',width:1254,height:1254,crop:[0,0,1254,1254]}};

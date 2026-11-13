@@ -1,0 +1,17 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Садовод — проверка дорожки</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#244d30;color:#fff6df;font:15px system-ui}header{padding:14px 20px;background:#153c27;display:flex;align-items:center;gap:12px;flex-wrap:wrap}button{font:inherit;padding:9px 15px;border:1px solid #bca46e;background:#f5e7c5;color:#253e27;border-radius:6px;cursor:pointer}button[aria-pressed=true]{background:#afcd8e}p{margin:0}svg{display:block;width:100%;height:calc(100vh - 105px);touch-action:none}footer{padding:8px 20px;background:#153c27}#result{margin-left:auto}</style>
+<header><strong>Садовод · дорожка в игровом движке</strong><button id="paint" aria-pressed="true">Дорожка</button><button id="erase" aria-pressed="false">Трава</button><button id="undo">Отмена</button><button id="reset">Исходный участок</button><button id="zoom">Крупно</button><span id="result">Нажмите на клетку</span></header>
+<svg id="world" viewBox="130 80 510 260" aria-label="Рабочий участок с дорожками"></svg><footer>Земля под маской травы · фиксированная фактура · прямая, поворот и перекрёсток · изменения сохраняются только на этом стенде</footer>
+<script type="module">
+import {TerrainRenderer} from './terrain-svg-renderer.js?v=253';
+import {landCells,cellIndex} from './land-model.js?v=182';
+const key='sadovod-path-check-v247',svg=document.querySelector('#world'),renderer=new TerrainRenderer(svg),result=document.querySelector('#result');let mode='path',history=[],cells;
+function initial(){const c=landCells(0);for(let x=1;x<=10;x++)c[cellIndex(x,6)]='path';for(let y=2;y<=9;y++)c[cellIndex(6,y)]='path';for(let y=6;y<=9;y++)c[cellIndex(2,y)]='path';for(let x=2;x<=4;x++)c[cellIndex(x,9)]='path';return c}
+try{const saved=JSON.parse(localStorage.getItem(key));cells=Array.isArray(saved)&&saved.length===144?saved:initial()}catch{cells=initial()}
+const draw=()=>{renderer.update(cells);renderer.setView({scale:1.8});localStorage.setItem(key,JSON.stringify(cells))};draw();
+for(const [id,value]of [['paint','path'],['erase','grass']])document.querySelector('#'+id).onclick=()=>{mode=value;for(const b of ['paint','erase'])document.querySelector('#'+b).setAttribute('aria-pressed',String(b===id))};
+svg.addEventListener('pointerdown',e=>{const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse()),c=Math.floor((p.x-384)/64+p.y/32),r=Math.floor(p.y/32-(p.x-384)/64),i=cellIndex(c,r);if(i<0||i>=cells.length||cells[i]==='void')return;history.push([...cells]);cells[i]=mode;draw();result.textContent=`Клетка ${c}, ${r}: ${mode==='path'?'дорожка':'трава'}`});
+document.querySelector('#undo').onclick=()=>{if(history.length){cells=history.pop();draw();result.textContent='Изменение отменено'}};
+document.querySelector('#reset').onclick=()=>{history.push([...cells]);cells=initial();draw()};
+let close=false;document.querySelector('#zoom').onclick=e=>{close=!close;svg.setAttribute('viewBox',close?'230 120 300 160':'130 80 510 260');e.target.textContent=close?'Общий вид':'Крупно'};
+</script></html>

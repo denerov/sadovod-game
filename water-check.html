@@ -1,0 +1,17 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Садовод — берег и вода</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#244d30;color:#fff6df;font:15px system-ui}header{padding:14px 20px;background:#153c27;display:flex;align-items:center;gap:12px;flex-wrap:wrap}button{font:inherit;padding:9px 15px;border:1px solid #bca46e;background:#f5e7c5;color:#253e27;border-radius:6px;cursor:pointer}button[aria-pressed=true]{background:#afcd8e}svg{display:block;width:100%;height:calc(100vh - 105px);touch-action:none}footer{padding:8px 20px;background:#153c27}#result{margin-left:auto}</style>
+<header><strong>Садовод · берег и вода в игровом движке</strong><button id="water" aria-pressed="true">Вода</button><button id="grass" aria-pressed="false">Трава</button><button id="path" aria-pressed="false">Дорожка</button><button id="undo">Отмена</button><button id="reset">Исходный участок</button><button id="zoom">Крупно</button><span id="result">Нажмите на клетку</span></header>
+<svg id="world" viewBox="140 25 490 330" aria-label="Рабочий водоём с берегом и дорожкой"></svg><footer>Цельная вода · плавное мелководье · земляной уступ · травинки по берегу</footer>
+<script type="module">
+import {TerrainRenderer} from './terrain-svg-renderer.js?v=254';
+import {landCells,cellIndex} from './land-model.js?v=182';
+const key='sadovod-water-check-v254',svg=document.querySelector('#world'),renderer=new TerrainRenderer(svg),result=document.querySelector('#result');let mode='water',history=[],cells;
+function initial(){const c=landCells(0);for(let x=4;x<=9;x++)for(let y=3;y<=8;y++)if(!(x===4&&y<5)&&!(x>7&&y>6))c[cellIndex(x,y)]='water';for(let x=1;x<=9;x++)c[cellIndex(x,1)]='path';for(let y=2;y<=9;y++)c[cellIndex(2,y)]='path';return c}
+try{const saved=JSON.parse(localStorage.getItem(key));cells=Array.isArray(saved)&&saved.length===144?saved:initial()}catch{cells=initial()}
+const draw=()=>{renderer.update(cells);renderer.setView({scale:1.8});localStorage.setItem(key,JSON.stringify(cells))};draw();
+for(const id of ['water','grass','path'])document.querySelector('#'+id).onclick=()=>{mode=id;for(const b of ['water','grass','path'])document.querySelector('#'+b).setAttribute('aria-pressed',String(b===id))};
+svg.addEventListener('pointerdown',e=>{const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse()),c=Math.floor((p.x-384)/64+p.y/32),r=Math.floor(p.y/32-(p.x-384)/64),i=cellIndex(c,r);if(i<0||i>=cells.length||cells[i]==='void')return;history.push([...cells]);cells[i]=mode;draw();result.textContent=`Клетка ${c}, ${r}: ${mode==='water'?'вода':mode==='path'?'дорожка':'трава'}`});
+document.querySelector('#undo').onclick=()=>{if(history.length){cells=history.pop();draw();result.textContent='Изменение отменено'}};
+document.querySelector('#reset').onclick=()=>{history.push([...cells]);cells=initial();draw()};
+let close=false;document.querySelector('#zoom').onclick=e=>{close=!close;svg.setAttribute('viewBox',close?'245 120 240 160':'140 25 490 330');e.target.textContent=close?'Общий вид':'Крупно'};
+</script></html>

@@ -1,0 +1,9 @@
+import {PRODUCTION_PRICES} from './balance-v141.js?v=209';
+export const DAIRY_COW={name:'Молочная корова',cost:800,minutes:15,yield:2,size:1,canvasHeight:57,renderScale:.7,description:'1 сено → 2 молока за 15 мин.'};
+export const DAIRY_FACTORY={name:'Му-лочный завод',cost:2000,minutes:15,input:4,size:2,canvasHeight:125,description:'4 молока → 1 сыр и 1 масло за 15 мин.'};
+export const DAIRY_GOODS={hayFeed:{name:'Сено для кормления',cost:6},milk:{name:'Молоко',sale:12},cheese:{name:'Сыр',sale:PRODUCTION_PRICES.cheese},butter:{name:'Сливочное масло',sale:PRODUCTION_PRICES.butter}};
+const count=n=>Number.isSafeInteger(n)&&n>=0?n:0;
+export function restoreDairy(saved){const out={cows:{},factories:{}};for(const kind of ['cows','factories'])for(const [id,v]of Object.entries(saved?.[kind]||{})){if(!v||!Number.isFinite(v.remaining)||v.remaining<0)continue;out[kind][id]={remaining:v.remaining,ready:count(v.ready)}}return out;}
+export function buyHay(s){if(s.coins<6)return false;s.coins-=6;s.stock.hayFeed++;return true;}
+export function activateDairy(s,o){const cow=o?.type==='dairy-cow';if(!cow&&o?.type!=='dairy-factory')return false;const bucket=cow?s.dairy.cows:s.dairy.factories,f=bucket[o.id];if(f?.ready){const n=f.ready;if(cow)s.stock.milk+=n;else{s.stock.cheese+=n;s.stock.butter+=n}delete bucket[o.id];return {action:'collect',count:n,cow};}if(f)return {action:'working',remaining:f.remaining,cow};const key=cow?'hayFeed':'milk',input=cow?1:4;if(s.stock[key]<input)return {action:'missing',key,input,cow};s.stock[key]-=input;bucket[o.id]={remaining:15*60000,ready:0};return {action:'start',cow};}
+export function advanceDairy(s,ms,active){if(!Number.isFinite(ms)||ms<=0)return;for(const o of active){const cow=o.type==='dairy-cow',f=(cow?s.dairy.cows:s.dairy.factories)[o.id];if(!f||f.ready)continue;f.remaining=Math.max(0,f.remaining-ms);if(!f.remaining)f.ready=cow?2:1;}}

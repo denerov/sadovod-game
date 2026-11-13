@@ -1,0 +1,20 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Садовод — рисованный переход</title>
+<style>*{box-sizing:border-box}body{margin:0;background:#203d28;color:#fff5de;font:15px system-ui}header{padding:14px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}button{font:inherit;padding:9px 15px;border:1px solid #b9a16f;border-radius:6px;background:#f4e6c7;color:#263b27;cursor:pointer}button[aria-pressed=true]{background:#a9c58b}.stage{background:#252b26;padding:18px}canvas{display:block;width:100%;height:calc(100vh - 165px);min-height:380px}footer{padding:13px 20px;line-height:1.5}#status{margin-left:auto}</style>
+<header><strong>Садовод · рисованный переход</strong><button id="both" aria-pressed="true">Вместе</button><button id="grass" aria-pressed="false">Только трава</button><button id="earth" aria-pressed="false">Только земля</button><span id="status">Загрузка материалов…</span></header>
+<div class="stage"><canvas aria-label="Рисованный край травы поверх игровой земли"></canvas></div>
+<footer>Один подготовленный прямой переход. Переключение показывает настоящие слои: земля снизу, трава и срез дернины сверху. Это проверка рисунка материала; повороты и клеточная сборка здесь ещё не реализованы.</footer>
+<script type="module">
+import {terrainMaterial} from './terrain-material.js?v=248';
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),status=document.querySelector('#status');let mode='both';
+const load=async src=>{const img=new Image();img.src=src;await img.decode();return img};
+const [grass,earth]=await Promise.all([load('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/terrain-v250/grass-cut.png'),terrainMaterial('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/sand-221.webp',128).then(load)]);
+// Sample at a fixed world scale. The transparent lower part of the grass
+// sprite exposes the independently drawn soil; the sprite contains no road.
+function draw(){const box=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);const w=box.width,h=box.height;
+ ctx.fillStyle='#535752';ctx.fillRect(0,0,w,h);
+ if(mode!=='grass'){const p=ctx.createPattern(earth,'repeat');p.setTransform(new DOMMatrix([.48,0,0,.48,0,0]));ctx.fillStyle=p;ctx.fillRect(0,0,w,h)}
+ if(mode!=='earth'){const scale=.57,sw=grass.width*scale,sh=grass.height*scale,y=Math.max(8,h*.52-430*scale);for(let x=-sw*.1;x<w;x+=sw)ctx.drawImage(grass,x,y,sw,sh);
+  if(y>0){ctx.save();ctx.beginPath();ctx.rect(0,0,w,y+.5);ctx.clip();const strip=document.createElement('canvas');strip.width=grass.width;strip.height=180;strip.getContext('2d').drawImage(grass,0,0,grass.width,180,0,0,grass.width,180);const p=ctx.createPattern(strip,'repeat');p.setTransform(new DOMMatrix([scale,0,0,scale,-sw*.1,y-180*scale]));ctx.fillStyle=p;ctx.fillRect(0,0,w,y+1);ctx.restore()}}
+ status.textContent=mode==='both'?'Два отдельных слоя':mode==='grass'?'Прозрачная область под краем':'Земля без травяного покрова';}
+for(const id of ['both','grass','earth'])document.querySelector('#'+id).onclick=()=>{mode=id;for(const other of ['both','grass','earth'])document.querySelector('#'+other).setAttribute('aria-pressed',String(id===other));draw()};window.addEventListener('resize',draw);draw();
+</script></html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html class="static-game" data-cloud-loading lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#25462b">
+  <title>Садовод — участок</title>
+<script type="application/x-sadovod" data-script-type="classic">try{if(!localStorage.getItem("sadovod-layout-v77")){const old=localStorage.getItem("sadovod-surfaces-v1");if(old)window.SadovodSave.setItem("sadovod-surfaces-before-v77",old);window.SadovodSave.setItem("sadovod-surfaces-v1",JSON.stringify(Array(144).fill("grass")));window.SadovodSave.removeItem("sadovod-decor-v1");window.SadovodSave.setItem("sadovod.farmer.cell.v1",JSON.stringify({column:6,row:7,x:352,y:224}));window.SadovodSave.setItem("sadovod-layout-v77","1")}}catch{}</script>
+  <link rel="preload" as="image" href="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/lawn-221.webp" fetchpriority="high">
+  <link rel="modulepreload" href="terrain-svg-renderer.js?v=278">
+  <link rel="stylesheet" href="farm-ui.css?v=276">
+  <script type="application/x-sadovod" data-script-type="classic" src="level-glyphs.js?v=182" defer></script>
+  <script type="application/x-sadovod" data-script-type="classic" src="farm-coordinates.js?v=182" defer></script>
+  <script type="application/x-sadovod" data-script-type="module" src="farm-ui.js?v=301" defer></script>
+<link rel="stylesheet" href="game-scroll.css?v=182"><script type="application/x-sadovod" data-script-type="classic" src="game-scroll.js?v=182" defer></script>
+
+<style>html[data-cloud-loading] body>*{visibility:hidden}html[data-cloud-loading] #cloud-message,html[data-cloud-loading] #cloud-message *{visibility:visible}</style><script type="module" src="cloud-save.js?v=214"></script><style>.static-game *:not(.harvest-halo), .static-game *::before, .static-game *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}</style><link rel="manifest" href="app.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Садовод"><link rel="apple-touch-icon" href="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/market.png">
+<link rel="stylesheet" href="apiary-v158.css?v=182">
+<link rel="stylesheet" href="market-v159.css?v=298">
+<link rel="stylesheet" href="farm-audio.css?v=182"><link rel="stylesheet" href="pens.css?v=188"><script type="application/x-sadovod" data-script-type="module" src="farm-pens.js?v=270"></script></head>
+<body>
+
+  <div class="farm-view">
+  <canvas class="terrain-chunk-screen" aria-hidden="true"></canvas>
+  <svg class="plot" xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 772 388" aria-label="Участок фермы">
+
+  </svg>
+  </div>
+<header class="hud" aria-label="Ресурсы и уровень"><div class="balance"><button class="currency" aria-label="Рубль" aria-describedby="tip-ruble"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/ruble-v23.webp" alt=""><span class="tooltip" id="tip-ruble" role="tooltip">Рубль</span></button><svg class="amount" data-balance="0" aria-label="Баланс: 0" role="img"><text class="amount-value">0</text></svg></div><div class="balance"><button class="currency" aria-label="Стахановский уголь" aria-describedby="tip-coal"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/coal-v23.webp" alt=""><span class="tooltip" id="tip-coal" role="tooltip">Стахановский уголь</span></button><svg class="amount" data-balance="0" aria-label="Баланс: 0" role="img"><text class="amount-value">0</text></svg></div><div class="balance"><button class="currency" aria-label="Топливо" aria-describedby="tip-fuel"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/fuel-v23.webp" alt=""><span class="tooltip" id="tip-fuel" role="tooltip">Топливо</span></button><svg class="amount" data-balance="0" aria-label="Баланс: 0" role="img"><text class="amount-value">0</text></svg></div><div class="level" aria-label="Уровень 1 из 200"><svg class="level-number" viewBox="0 0 142 108" aria-hidden="true"><image href="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/level.png" width="142" height="108"/><defs><linearGradient id="level-number-gold" x1="0" y1="1" x2="0" y2="0"><stop stop-color="#fff5c4"/><stop offset=".38" stop-color="#f4d277"/><stop offset=".55" stop-color="#ba8228"/><stop offset=".72" stop-color="#ffedaa"/><stop offset="1" stop-color="#d3a343"/></linearGradient><radialGradient id="level-clean-disk"><stop stop-color="#164722"/><stop offset="1" stop-color="#103a1d"/></radialGradient></defs><ellipse cx="70" cy="55" rx="32" ry="37" fill="url(#level-clean-disk)"/><g class="level-outline" fill="url(#level-number-gold)" stroke="#714611" stroke-width=".65" paint-order="stroke fill" stroke-linejoin="round"></g><text class="level-value" x="70" y="55">1</text></svg><progress value="0" max="100" aria-label="Опыт до следующего уровня"></progress><span class="level-caption">0%</span></div></header><div class="view-controls" role="group" aria-label="Масштаб участка"><button type="button" data-zoom=".2" aria-label="Увеличить" title="Увеличить"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg></button><input class="zoom-slider" type="range" min="0" max="100" step="1" value="37" aria-label="Масштаб фермы"><button type="button" data-zoom="-.2" aria-label="Уменьшить" title="Уменьшить"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button></div><div class="dock-wrap"><nav class="dock" aria-label="Управление фермой"><span class="dock-static-art" aria-hidden="true"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/dock-v152/belt.webp" alt="" draggable="false"></span><button class="dock-button" data-tool="hand" aria-label="Рука" title="Рука" data-label="Рука" aria-pressed="true"></button><button class="dock-button" data-tool="shovel" aria-label="Лопата" title="Лопата" data-label="Лопата" aria-pressed="false"></button><button class="dock-button" data-tool="landscape" aria-label="Обустройство" title="Обустройство" data-label="Обустройство" aria-pressed="false" aria-expanded="false" aria-controls="surface-menu"></button><button class="dock-button" data-tool="watering" aria-label="Полив" title="Полив" data-label="Полив" aria-pressed="false"></button><button class="dock-button" data-tool="market" aria-label="Рынок" title="Рынок" data-label="Рынок" aria-pressed="false"></button><button class="dock-button" data-tool="stock" aria-label="Запасы" title="Запасы" data-label="Запасы" aria-pressed="false"></button><button class="dock-button" data-tool="hangar" aria-label="Ангар" title="Ангар" data-label="Ангар" aria-pressed="false"></button><button class="dock-button" data-tool="settings" aria-label="Настройки" title="Настройки" data-label="Настройки" aria-pressed="false"></button></nav><div class="surface-menu" id="surface-menu" role="group" aria-label="Поверхность участка" hidden><button data-surface="path" aria-pressed="false"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/path.png" alt=""><span>Дорожка</span></button><button data-surface="grass" aria-pressed="false"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/grass.png" alt=""><span>Очистить</span></button><button data-surface="water" aria-pressed="false"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/water.png" alt=""><span>Вода</span></button></div></div><dialog aria-labelledby="menu-title"><h2 id="menu-title"></h2><p></p><button type="button">Закрыть</button></dialog>
+  <p class="action-error" role="status" hidden></p>
+  <script type="application/x-sadovod" data-script-type="classic">
+    const plot=document.querySelector('.plot');
+    const cells=document.createDocumentFragment();
+    // Logical square grid projected to diamonds, width:height = 2:1.
+    // One shared projection will also position future objects on these cells.
+    const rows=12,cols=12,halfWidth=32,halfHeight=16;
+    for(let row=0;row<rows;row++)for(let col=0;col<cols;col++){
+      const x=(col-row)*halfWidth+rows*halfWidth;
+      const y=(col+row)*halfHeight;
+      const cell=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+      cell.setAttribute('class','cell');
+      cell.setAttribute('points',`${x},${y} ${x+halfWidth},${y+halfHeight} ${x},${y+2*halfHeight} ${x-halfWidth},${y+halfHeight}`);
+      cell.dataset.row=row;cell.dataset.col=col;
+      cell.setAttribute('aria-hidden','true');cells.append(cell);
+    }
+    plot.append(cells);
+  </script>
+<link rel="stylesheet" href="harvest-ui.css?v=294">
+<link rel="stylesheet" href="sowing-bar.css?v=265">
+<script type="application/x-sadovod" data-script-type="module"  src="harvest-ui.js?v=294"></script>
+<script type="application/x-sadovod" data-script-type="module"  src="farm-decor.js?v=276"></script>
+<script type="application/x-sadovod" data-script-type="module"  src="farm-surfaces.js?v=296"></script>
+<script type="application/x-sadovod" data-script-type="module" src="terrain-chunk-screen.js?v=1"></script>
+<script type="application/x-sadovod" data-script-type="module"  src="farm-character.js?v=211"></script>
+<script type="application/x-sadovod" data-script-type="module"  src="cell-preview.js?v=182"></script>
+<script type="application/x-sadovod" data-script-type="module"  src="farm-crops.js?v=298"></script>
+<link rel="stylesheet" href="farm-machinery.css?v=272">
+
+<script type="application/x-sadovod" data-script-type="module"  src="farm-machinery.js?v=276"></script>
+<script type="application/x-sadovod" data-script-type="module"  src="farm-market.js?v=298"></script>
+<script type="application/x-sadovod" data-script-type="classic">
+ let groundReady=false,farmerReady=false,decorReady=false;
+ const reveal=()=>{if(groundReady&&farmerReady&&decorReady){document.documentElement.dataset.sceneReady='true';document.documentElement.dataset.sceneReadyMs=performance.now().toFixed(0);parent.postMessage('sadovod:scene-ready',location.origin)}};
+ window.addEventListener('sadovod:decor-ready',()=>{decorReady=true;reveal()},{once:true});
+ window.addEventListener('sadovod:terrain-painted',()=>{groundReady=true;reveal()},{once:true});
+ window.addEventListener('sadovod:character-ready',()=>{farmerReady=true;reveal()},{once:true});
+</script>
+<script type="application/x-sadovod" data-script-type="module" src="farm-chains.js?v=210"></script>
+<link rel="stylesheet" href="farm-journal.css?v=182">
+<script type="application/x-sadovod" data-script-type="module" src="farm-journal.js?v=210"></script>
+<link rel="stylesheet" href="farmandia-hub.css?v=297">
+<script type="application/x-sadovod" data-script-type="module" src="farmandia-hub.js?v=297"></script>
+<link rel="stylesheet" href="farm-sheet.css?v=182">
+<script type="application/x-sadovod" data-script-type="module" src="farm-storage.js?v=210"></script><script type="application/x-sadovod" data-script-type="module" src="farm-dairy.js?v=210"></script><script type="application/x-sadovod" data-script-type="module" src="farm-ketchup.js?v=210"></script><script type="application/x-sadovod" data-script-type="module" src="farm-wine.js?v=270"></script>
+<link rel="stylesheet" href="farm-mobile.css?v=182">
+<link rel="stylesheet" href="farm-hangar.css?v=182"><script type="application/x-sadovod" data-script-type="module" src="farm-hangar.js?v=276"></script>
+<link rel="stylesheet" href="production-badge.css?v=182">
+<link rel="stylesheet" href="fullscreen.css?v=182"><script type="application/x-sadovod" data-script-type="module" src="fullscreen.js?v=205"></script><link rel="stylesheet" href="surface-menu.css?v=182"><link rel="stylesheet" href="dock-hover.css?v=182"><script type="application/x-sadovod" data-script-type="module" src="dock-hover.js?v=182"></script></body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Садовод — стадии растений</title>
+<style>body{margin:0;background:#244d30;color:#fff5df;font:16px system-ui}header{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:16px;background:#173c28}select,button{font:inherit;padding:9px 14px;color:#25402a;background:#f5e7c5;border:1px solid #bb9d61;border-radius:6px}svg{display:block;width:100%;height:calc(100dvh - 120px)}footer{padding:12px}text{font:8px system-ui;fill:#fff6da;paint-order:stroke;stroke:#254b30;stroke-width:2}</style>
+<header><strong>Игровые стадии растений</strong><select id="species" aria-label="Растение"></select><button id="rotate">Повернуть все четыре стадии</button><button id="close-view">Зрелое дерево крупно</button><span id="status">Загрузка…</span></header><svg id="world" viewBox="102 30 565 260" aria-label="Саженец, молодое растение, взрослая листва, зрелое растение"></svg><footer>Проверка настоящих игровых изображений, роста и контакта с травой. Сохранение фермы не изменяется.</footer>
+<script type="module">
+import {TerrainRenderer} from './terrain-svg-renderer.js?v=266';
+import {updateGrounding,removeGrounding} from './object-grounding.js?v=269';
+import {CATALOG,spriteBox} from './decor-model.js?v=268';
+import {GROWING_PLANTS,initialisePlant,plantStage} from './plant-growth-model.js?v=264';
+import {landCells} from './land-model.js?v=182';
+const svg=document.querySelector('#world'),renderer=new TerrainRenderer(svg),cells=landCells(0),groups=[],ns='http://www.w3.org/2000/svg';renderer.update(cells);renderer.setView({scale:3});
+const catalog=await fetch('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/growth-v264/catalog.json').then(r=>r.json()),selector=document.querySelector('#species');let rotation=0;
+for(const type of GROWING_PLANTS){const option=document.createElement('option');option.value=type;option.textContent=CATALOG[type].name;selector.append(option)}selector.value='black_currant';
+function draw(){for(const g of groups){removeGrounding(g);g.remove()}groups.length=0;
+ const type=selector.value,labels=['Саженец','Молодое растение','Взрослая листва','Зрелое растение'];
+ for(let stage=0;stage<4;stage++){
+  const o={id:'growth-'+stage,type,column:2+stage*2,row:9-stage*2,rotation};initialisePlant(o,0);const time=[0,.4,.8,1.01][stage]*o.plantGrowth.duration;
+  const visual=plantStage(o,{remaining:stage===3?0:1},time),frames=catalog[type][visual],frame=frames[rotation],box=spriteBox(o,frames),g=document.createElementNS(ns,'g');g.dataset.decorId=o.id;g.hitFrame=frame;
+  const image=document.createElementNS(ns,'image');image.setAttribute('href',frame.src);for(const k of ['x','y','width','height'])image.setAttribute(k,box[k]);g.append(image);svg.append(g);groups.push(g);updateGrounding(svg,g,o,image,box,cells,frame);
+  const text=document.createElementNS(ns,'text');text.textContent=labels[stage];text.setAttribute('x',box.pivotX);text.setAttribute('y',box.pivotY+17);text.setAttribute('text-anchor','middle');g.append(text);
+ }
+ document.querySelector('#status').textContent=CATALOG[type].name+' · ракурс '+rotation*90+'°';
+}
+document.querySelector('#close-view').onclick=()=>{svg.setAttribute('viewBox','480 65 175 175')};selector.onchange=draw;document.querySelector('#rotate').onclick=()=>{rotation=(rotation+1)%4;draw()};draw();
+</script></html>

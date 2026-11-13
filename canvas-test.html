@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#153d25">
+  <title>Садовод</title>
+  <meta name="description" content="Садовод — живая ферма с производством, магазином и развитием участка.">
+  <link rel="stylesheet" href="webgl-engine.css?v=1">
+  <link rel="stylesheet" href="fatal-fix.css?v=4">
+  <link rel="stylesheet" href="editor.css?v=6">
+  <link rel="stylesheet" href="game-shell.css?v=1">
+  <link rel="stylesheet" href="gameplay-v259.css?v=1">
+  <link rel="stylesheet" href="shell-v288.css?v=290">
+  <style>.shop-art svg{max-width:95%;max-height:145px}.diagnostics .load{display:none}</style>
+</head>
+<body>
+  <canvas id="game" aria-label="Игровой участок Садовода"></canvas>
+  <header class="game-hud" aria-label="Ресурсы фермы"><span class="resource-chip"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/ruble-v23.webp" alt="Рубли"><b id="coins">25 000</b><button data-open-bank="coins" aria-label="Купить рубли">＋</button></span><span class="resource-chip premium"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/coal-v23.webp" alt="Стахановский уголь"><b id="coal">250</b><button data-open-bank="coal" aria-label="Купить уголь">＋</button></span><span class="resource-chip"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/fuel-v23.webp" alt="Топливо"><b id="fuel">100</b><button data-open-bank="fuel" aria-label="Купить топливо">＋</button></span><span class="hud-level"><b>1</b><span><small>Уровень</small><i><em id="xpbar"></em></i></span></span></header>
+  <button id="reset" class="map-reset" type="button">Вся карта</button>
+  <section class="panel diagnostics" aria-label="Диагностика">
+    <div class="metrics">
+      <span><b id="fps">—</b> FPS</span><span><b id="visible">0</b> видно</span><span><b id="draws">0</b> отрисовок</span><span><b id="textures">0</b> текстур</span>
+    </div>
+    <div class="load" hidden><i id="loadbar"></i></div>
+    <p id="status">Ферма готова</p>
+    <div class="density" role="group" aria-label="Добавить объект">
+      <button data-add="house" type="button">＋ Дом</button>
+      <button data-add="apple" type="button">＋ Яблоня</button>
+      <button data-add="pen_cow" type="button">＋ Коровник</button>
+      <button data-add="stakhanov_monument" type="button">＋ Памятник</button>
+    </div>
+    <div class="surface-tools" role="group" aria-label="Покрытие участка">
+      <button data-surface="hand" class="active" type="button">✋ Рука</button>
+      <button data-surface="grass" type="button">Трава</button>
+      <button data-surface="bed" type="button">Грядка</button>
+      <button data-surface="water" type="button">Вода</button>
+      <button data-surface="path" type="button">Дорожка</button>
+      <button data-surface="paving" type="button">Плитка</button>
+    </div>
+  </section>
+  <nav class="game-dock" aria-label="Главное меню"><button data-dock="hand" class="active"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/hand.png" alt=""><span>Рука</span></button><button data-dock="process"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/loading-gear-green.svg" alt=""><span>Производство</span></button><button data-dock="landscape"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/shovel.png" alt=""><span>Ландшафт</span></button><button data-dock="market"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/market.png" alt=""><span>Магазин</span></button><button data-dock="bank"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/coal.png" alt=""><span>Банк</span></button><button data-dock="stock"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/stock.png" alt=""><span>Запасы</span></button><button data-dock="hangar"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/hangar.png" alt=""><span>Ангар</span></button><button data-dock="gifts"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/market.png" alt=""><span>Подарки</span></button><button data-dock="friends"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/hand.png" alt=""><span>Друзья</span></button><button data-dock="achievements"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/level.png" alt=""><span>Награды</span></button><button data-dock="settings"><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/settings.png" alt=""><span>Настройки</span></button></nav>
+  <dialog id="market-dialog" class="game-dialog"><header><img src="https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-v159/logo.webp" alt="Садовод"><h2>Центральный рынок</h2><button data-close aria-label="Закрыть">×</button></header><nav class="market-categories"></nav><div class="market-grid"></div></dialog>
+  <dialog id="settings-dialog" class="game-dialog settings"><header><h2>Настройки</h2><button data-close aria-label="Закрыть">×</button></header><label>Качество изображения <select id="quality"><option value="2">Высокое</option><option value="1.5">Среднее</option><option value="1">Экономное</option></select></label><label><input id="show-diagnostics" type="checkbox"> Показывать диагностику</label><button id="fullscreen" type="button">Полный экран</button><button id="clear-empty-farm" type="button">Вернуть пустую ферму</button></dialog>
+  <section class="object-tools" id="object-tools" hidden aria-label="Действия с объектом">
+    <strong id="object-name">Объект</strong>
+    <button id="produce-object" type="button" hidden>Запустить</button>
+    <button id="rotate-object" type="button">↻ Повернуть</button>
+    <button id="copy-object" type="button">＋ Ещё такой</button>
+    <button id="remove-object" type="button">Убрать</button>
+    <button id="undo-object" type="button">Отменить</button>
+  </section>
+  <div class="hint">Тяните карту · колесо или щипок — масштаб</div>
+  <div id="fatal" hidden></div>
+  <script type="module" src="engine-loader.js?v=307"></script>
+</body>
+</html>

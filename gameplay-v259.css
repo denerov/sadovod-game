@@ -1,0 +1,7 @@
+.seed-stepper{display:grid;grid-template-columns:40px 36px 40px;justify-content:center;align-items:center;gap:6px;margin:0 10px 9px}
+.seed-stepper button{margin:0;min-height:38px;font-size:22px}
+.seed-stepper strong{text-align:center;font:700 19px Georgia,serif}
+.seed-shop-card>button[data-buy-seeds]{margin-top:0}
+.seed-shop-card .shop-art img{filter:drop-shadow(0 3px 3px #29452255)}
+.market-page{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:12px;padding:8px 0 2px;font:700 15px Georgia,serif}
+.market-page button{min-width:110px;margin:0;padding:8px 12px;border:2px solid #bc943d;border-radius:10px;background:#1d6238;color:#fff3c8;font-weight:800}

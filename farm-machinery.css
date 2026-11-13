@@ -1,0 +1,191 @@
+.machine-beacon{animation:roof-beacon 1.1s steps(1,end) infinite;pointer-events:none}@keyframes roof-beacon{0%,45%,70%,100%{opacity:.12}15%,58%{opacity:1}}
+.machine-controls{position:fixed;z-index:100;left:50%;bottom:calc(var(--field-bottom,100px) + 8px);transform:translateX(-50%);display:flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid #bfaa76;border-radius:15px;background:rgba(250,243,220,.97);box-shadow:0 6px 24px #09221155;color:#283827;font:14px Georgia,serif;width:max-content;max-width:min(540px,calc(100vw - 28px));flex-wrap:wrap;justify-content:center}.machine-controls[hidden]{display:none}.machine-controls strong{font-size:15px}.machine-controls .harvest-close[data-cancel]{position:relative;inset:auto;flex:0 0 35px;width:35px;min-width:35px;height:35px;min-height:35px;padding:0;display:grid;place-items:center;border:2px solid #bc883a;border-radius:50%;background:#fff0d3;color:#633716;box-shadow:0 2px 4px #70471440}.machine-controls select{max-width:220px}.machine-controls>span:not(.machine-fuel){flex-basis:100%;text-align:center;font-size:13px}.machine-controls button{background:#174c30;color:#fff5d9;border:1px solid #ad975f;border-radius:7px;padding:8px 12px;font:inherit;cursor:pointer}.machine-controls button:disabled{opacity:.45;cursor:default}.machine-controls select{padding:7px;border:1px solid #baa174;background:#fff8e9;color:#343328;border-radius:5px}.machine-controls label{display:flex;gap:6px;align-items:center}.machine-fuel{display:flex;align-items:center;gap:4px}.machine-fuel img{height:25px;width:24px;object-fit:contain}
+.machine-controls.is-active{bottom:calc(var(--field-bottom,100px) + 4px);flex-wrap:nowrap;min-height:40px;max-width:calc(100vw - 18px);padding:5px 7px 5px 11px;border-radius:22px;gap:8px;box-shadow:0 3px 10px #09221144}.machine-controls.is-active strong{font-size:14px;white-space:nowrap}.machine-controls.is-active>span:not(.machine-fuel){flex-basis:auto;font-size:13px;white-space:nowrap}.machine-controls.is-active button{min-height:30px;padding:4px 9px;border-radius:16px;font-size:12px}
+.machine-card-art{position:relative}.machine-eye{position:absolute!important;right:9px;top:9px;width:38px;height:35px;padding:6px!important;border:1px solid #bca57c!important;background:#fff6e5ed!important;border-radius:8px;color:#694421;cursor:pointer;box-shadow:0 1px 3px #6a4a2730}.machine-eye svg{width:100%;height:100%}.machine-card .crop-art img{object-fit:cover}.machine-card .crop-description{min-height:60px}.machine-card dl dd{font-size:13px}.machine-card dl .category-icon{width:18px;height:18px}.machine-card .crop-buy{margin-top:auto}.machine-card .crop-card-content{display:flex;flex-direction:column}
+.market-dialog[data-screen=machine-detail]{padding:28px 38px}.machine-detail-header{display:flex;align-items:center;gap:24px;border-bottom:1px solid #cbb68c;padding:0 10px 16px}.machine-detail-header h2{font:700 clamp(24px,3vw,42px) Georgia;margin:0;flex:1}.machine-detail-header .market-back{position:static;flex-shrink:0}.machine-detail-header .market-close{position:static}.machine-detail-layout{display:grid;grid-template-columns:1.22fr 1fr;gap:30px;height:calc(100% - 78px);min-height:0}.machine-showcase{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(#fff6df22,#f6e9ce55),url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-v86/backdrop.webp') center/cover;border-radius:6px;margin:18px 0 0;isolation:isolate}.machine-showcase:before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#f9f0dce8,transparent 70%);z-index:-1}.machine-preview-stage{position:relative;width:100%;aspect-ratio:768/704;max-height:90%;margin:auto}.machine-preview-art{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 5px #17382244)}.preview-beacon{position:absolute;width:9px;height:7px;border-radius:50%;background:#ffeaaa;box-shadow:0 0 12px 5px #ffc34d99;transform:translate(-50%,-50%);animation:roof-beacon 1.1s steps(1,end) infinite}.machine-preview-controls{display:flex;justify-content:center;gap:10px;padding:14px;z-index:2}.machine-preview-controls button{padding:10px 14px!important;border:1px solid #ac935f;border-radius:7px;background:#fcf4df;color:#234e32;font:16px Georgia;cursor:pointer;box-shadow:0 2px 6px #614d3833}.machine-preview-controls button[data-demo]{background:#164d31;color:#fff5df}.preview-work{display:none;position:absolute;width:30%;height:30%;left:59%;top:55%;overflow:visible}.is-playing .preview-work{display:block}.is-playing .machine-preview-art{animation:machine-idle .28s ease-in-out infinite alternate}.machine-detail-copy{padding:32px 10px 20px 0;overflow:auto;color:#3a3327;text-align:left}.machine-detail-copy h3{font:700 31px Georgia;margin:12px 0}.machine-detail-copy p{font:18px/1.5 Georgia;margin:10px 0 20px}.machine-detail-copy dl{border-block:1px solid #cfbd98;padding:12px 0}.machine-detail-copy dl>div{display:flex;justify-content:space-between;gap:12px;margin:12px 0;font:16px Georgia}.machine-detail-copy dd{margin:0;text-align:right;font-weight:bold}.machine-detail-copy .machine-howto,.machine-detail-copy .machine-note{font-size:15px}.machine-note{background:#e8ddbd99;padding:10px;border-radius:6px}.machine-detail-prices{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.machine-detail-prices>div{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:8px}.machine-detail-prices img{width:36px;height:36px;object-fit:contain}.machine-detail-prices strong{font:700 25px Georgia}.machine-detail-prices button{grid-column:1/-1;width:100%}
+.work-particle{animation:work-scatter .88s linear infinite;animation-delay:var(--delay);transform-box:fill-box;transform-origin:center}.work-implement{animation:implement-dig .6s ease-in-out infinite alternate}.reel{animation:reel-turn .4s linear infinite;transform-origin:0 0}.orchard-arm{animation:orchard-grab 1.65s ease-in-out infinite;transform-origin:0 0}.machine-work-effects[data-effect=orchard]>.work-implement{animation:none}.machine-work-effects[data-effect=orchard] .work-particles{transform:translate(5px,-14px)}@keyframes work-scatter{0%{opacity:0;transform:translate(0,0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),10px)}}@keyframes implement-dig{from{transform:translateY(-1px)}to{transform:translateY(2px)}}@keyframes reel-turn{from{transform:scaleY(1)}50%{transform:scaleY(-1)}to{transform:scaleY(1)}}@keyframes orchard-grab{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(18deg)}}@keyframes machine-idle{from{transform:translateY(0)}to{transform:translateY(-1px)}}
+@media(max-height:500px){.machine-controls{bottom:88px;font-size:11px;gap:6px;padding:6px 10px;max-width:94vw}.machine-controls strong{font-size:14px}.machine-controls button{padding:5px 8px}.machine-controls select{max-width:145px;padding:4px}.machine-controls>span:not(.machine-fuel){max-width:210px}.market-dialog[data-screen=machine-detail]{padding:12px 24px}.machine-detail-header{padding-bottom:6px;gap:12px}.machine-detail-header h2{font-size:24px}.machine-detail-layout{height:calc(100% - 43px);gap:15px;grid-template-columns:.85fr 1fr}.machine-showcase{margin-top:8px}.machine-preview-stage{width:86%;max-height:calc(100% - 42px)}.machine-preview-controls{padding:5px;gap:6px}.machine-preview-controls button{padding:6px 9px!important;font-size:12px}.machine-detail-copy{padding:10px 0}.machine-detail-copy h3{font-size:21px;margin:6px 0}.machine-detail-copy p{font-size:13px;line-height:1.4;margin:8px 0}.machine-detail-copy dl{padding:3px 0}.machine-detail-copy dl>div{font-size:12px;margin:7px 0}.machine-detail-copy .machine-howto,.machine-detail-copy .machine-note{font-size:12px}.machine-detail-prices{margin-top:8px;gap:8px}.machine-detail-prices strong{font-size:19px}.machine-detail-prices img{width:26px;height:26px}.machine-detail-prices>div{grid-template-columns:26px 1fr;gap:4px}.machine-card .crop-description{min-height:0;font-size:12px}.machine-card dl dd{font-size:11px}.machine-eye{width:29px;height:27px;right:3px;top:3px}.machine-card .crop-art{height:100%!important}.machine-card .crop-art img{height:100%;object-fit:cover}}
+@media(prefers-reduced-motion:reduce){.machine-beacon,.preview-beacon{animation-duration:2s}.is-playing .machine-preview-art{animation:none}}
+body:has(.machine-controls:not([hidden])) .decor-rotate{visibility:hidden}
+.machine-card .crop-art img{object-fit:contain;background:#efe6d1}
+.machine-showcase[data-type=tractor] .preview-work,.machine-showcase[data-type=seeder] .preview-work{left:4%;top:42%}
+.machine-showcase[data-type=orchard] .preview-work{left:64%;top:27%}
+/* Full product artwork, shared sizing contract for every machinery detail. */
+.market-dialog[data-screen=machine-detail][data-design=machinery-v89]{padding:24px 32px 25px;gap:0}
+[data-design=machinery-v89] .machine-detail-header{flex:0 0 auto;gap:20px;padding:0 12px 18px;min-height:64px}
+[data-design=machinery-v89] .machine-detail-header .market-back{padding:8px 12px!important;text-decoration:none;border:1px solid #c6ac76;border-radius:7px;background:#f5e8cc;font-size:15px!important;margin:0}
+[data-design=machinery-v89] .machine-detail-layout{flex:1;min-height:0;height:auto;grid-template-columns:1.35fr 1fr;gap:30px;padding:22px 10px 16px}
+.machine-gallery{min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;border:1px solid #ceb884;border-radius:13px;overflow:hidden;background:#f0e5ce;box-shadow:inset 0 0 0 3px #fff7e3}
+.machine-detail-art{min-height:0;position:relative;flex:1;display:grid;place-items:center;overflow:hidden;background:#f0e5ce}
+.machine-scene-art{display:block;width:100%;height:100%;min-height:0;object-fit:contain;object-position:center}
+.machine-gallery-caption{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0;background:#fbf2df;border-top:1px solid #cdb986}
+.machine-gallery-caption>span{display:flex;gap:8px;align-items:center;font:16px Georgia;color:#644b2b}.machine-gallery-caption .category-icon{width:23px;height:23px}
+[data-design=machinery-v89] .machine-preview-controls{padding:0;gap:6px;flex-wrap:wrap}
+[data-design=machinery-v89] .machine-preview-controls button{font-size:14px;padding:9px 12px!important}
+[data-design=machinery-v89] .machine-detail-copy{padding:12px 2px 0 0;overflow:auto}
+[data-design=machinery-v89] .machine-detail-copy h3{font-size:clamp(24px,2.5vw,34px);line-height:1.13;margin:10px 0 17px}
+[data-design=machinery-v89] .machine-detail-copy>p{font-size:18px;line-height:1.5;margin-bottom:22px}
+[data-design=machinery-v89] .machine-detail-copy dl{padding:12px 0;margin:0}
+[data-design=machinery-v89] .machine-detail-copy dl>div{margin:13px 0;align-items:center;font-size:16px}
+[data-design=machinery-v89] .machine-detail-copy dt{display:flex;align-items:center;gap:9px;white-space:nowrap}
+[data-design=machinery-v89] .machine-detail-copy dt .category-icon,[data-design=machinery-v89] .machine-detail-copy dt img{height:22px;width:22px;object-fit:contain;color:#7c6039}
+.machine-instructions{margin-top:20px}.machine-instructions h4{font:700 19px Georgia;margin:0 0 8px}.machine-instructions p{font:16px/1.45 Georgia!important;margin:0 0 8px!important}
+.machine-purchase-footer{display:flex;align-items:center;gap:30px;justify-content:space-between;flex-shrink:0;border-top:1px solid #cbb787;padding:17px 12px 0}
+.machine-purchase-footer>span{font:17px Georgia;color:#685135}
+[data-design=machinery-v89] .machine-detail-prices{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:65%;margin:0}
+[data-design=machinery-v89] .machine-detail-prices>button{grid-column:auto;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px!important;font:18px Georgia!important}
+[data-design=machinery-v89] .machine-detail-prices>button:before,[data-design=machinery-v89] .machine-detail-prices>button:after{display:none}
+[data-design=machinery-v89] .machine-detail-prices strong{font-size:22px;white-space:nowrap}
+[data-design=machinery-v89] .machine-detail-prices img{width:32px;height:32px}
+[data-design=machinery-v89] .machine-preview-stage{width:auto;height:95%;aspect-ratio:768/704;max-width:94%;max-height:95%;margin:auto;align-self:center}
+.machine-detail-art.is-playing{background:radial-gradient(ellipse at 50% 78%,#a5986f30,transparent 36%),linear-gradient(#fff8e9,#e8dec5)}
+.machine-detail-art[data-type=tractor] .preview-work,.machine-detail-art[data-type=seeder] .preview-work{left:4%;top:42%}
+.machine-detail-art[data-type=orchard] .preview-work{left:64%;top:27%}
+@media(max-height:500px){
+ .market-dialog[data-screen=machine-detail][data-design=machinery-v89]{padding:9px 21px 10px}
+ [data-design=machinery-v89] .machine-detail-header{min-height:34px;padding:0 6px 7px;gap:12px}
+ [data-design=machinery-v89] .machine-detail-header h2{font-size:25px}
+ [data-design=machinery-v89] .machine-detail-header .market-back{padding:4px 8px!important;font-size:12px!important}
+ [data-design=machinery-v89] .machine-detail-layout{grid-template-columns:1.2fr 1fr;gap:17px;padding:9px 4px}
+ .machine-gallery{border-radius:8px}.machine-gallery-caption{padding:5px 7px}.machine-gallery-caption>span{font-size:12px;gap:4px}.machine-gallery-caption .category-icon{width:17px;height:17px}
+ [data-design=machinery-v89] .machine-preview-controls button{font-size:12px;padding:5px 7px!important}
+ [data-design=machinery-v89] .machine-detail-copy{padding:0 3px 0 0}
+ [data-design=machinery-v89] .machine-detail-copy .crop-category{font-size:11px}
+ [data-design=machinery-v89] .machine-detail-copy h3{font-size:21px;line-height:1.05;margin:5px 0 8px}
+ [data-design=machinery-v89] .machine-detail-copy>p{font-size:14px;line-height:1.35;margin:0 0 10px}
+ [data-design=machinery-v89] .machine-detail-copy dl{padding:4px 0}
+ [data-design=machinery-v89] .machine-detail-copy dl>div{font-size:13px;margin:6px 0}
+ [data-design=machinery-v89] .machine-detail-copy dt{gap:5px}
+ [data-design=machinery-v89] .machine-detail-copy dt img,[data-design=machinery-v89] .machine-detail-copy dt .category-icon{height:17px;width:17px}
+ .machine-instructions{margin-top:10px}.machine-instructions h4{font-size:15px;margin-bottom:4px}.machine-instructions p{font-size:13px!important}
+ .machine-purchase-footer{padding:7px 5px 0;gap:12px}.machine-purchase-footer>span{font-size:13px}
+ [data-design=machinery-v89] .machine-detail-prices{width:72%;gap:9px}
+ [data-design=machinery-v89] .machine-detail-prices>button{padding:5px!important;font-size:14px!important;gap:5px}
+ [data-design=machinery-v89] .machine-detail-prices strong{font-size:17px}
+ [data-design=machinery-v89] .machine-detail-prices img{width:23px;height:23px}
+}
+/* v89: retain the approved portrait card composition at every viewport. */
+.market-dialog[data-section=machines] .crop-cards{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:calc((100% - 24px)/3);gap:12px;align-content:start;overflow:auto;scroll-snap-type:x proximity}
+.machine-card{display:flex;flex-direction:column;scroll-snap-align:start}
+.machine-card .crop-art{height:auto!important;aspect-ratio:4/3;width:100%;padding:4px 4px 0;flex:none}
+.machine-card .crop-art img{width:100%;height:100%;object-fit:contain;mix-blend-mode:normal}
+.machine-card .crop-card-content{padding:12px 16px 15px;gap:0}
+.machine-card h3{font-size:28px;margin:0 0 9px}
+.machine-card .crop-description{font-size:17px;line-height:1.3;min-height:67px;max-height:none;overflow:visible;margin:0 0 12px}
+.machine-card-prices{display:flex;justify-content:space-between;gap:8px;margin-top:auto;margin-bottom:12px}
+.machine-card-prices>span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.machine-card-prices img{width:32px;height:32px;object-fit:contain}
+.machine-card-prices strong{font-size:23px}
+.machine-card-buy{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.machine-card-buy .crop-buy{font-size:20px!important;padding:11px 4px!important}
+@media(max-height:500px){
+.market-dialog[data-section=machines] .crop-cards{grid-auto-columns:240px;align-content:start}
+.machine-card{min-height:0;grid-template-columns:none}
+.machine-card .crop-art{height:auto!important;aspect-ratio:4/3;align-self:auto}
+.machine-card .crop-card-content{padding:9px 11px 11px}
+.machine-card h3{font-size:21px;margin-bottom:6px}
+.machine-card .crop-description{font-size:14px;line-height:1.25;min-height:70px;margin-bottom:9px}
+.machine-card-prices{gap:4px;margin-bottom:8px}
+.machine-card-prices img{width:23px;height:23px}
+.machine-card-prices strong{font-size:16px}
+.machine-card-buy{gap:6px}
+.machine-card-buy .crop-buy{font-size:15px!important;padding:8px 2px!important}
+}
+@media(min-height:501px){
+.market-dialog[data-section=machines][data-screen=market] .market-top{min-height:56px;padding-bottom:8px}
+.market-dialog[data-section=machines][data-screen=market] .market-logo{height:53px}
+.market-dialog[data-section=machines][data-screen=market] .market-banner{min-height:75px;padding-top:7px;padding-bottom:7px}
+.market-dialog[data-section=machines][data-screen=market] .market-banner h2{font-size:36px;margin-bottom:6px}
+.market-dialog[data-section=machines][data-screen=market] .market-tab{padding-top:9px;padding-bottom:9px}
+.machine-card .crop-description{min-height:45px}
+.machine-card .crop-card-content{padding-top:10px;padding-bottom:10px}
+.machine-card h3{margin-bottom:6px}
+.machine-card-buy .crop-buy{padding:8px 4px!important}
+}
+.market-dialog[data-section=machines] .crop-cards{grid-auto-rows:max-content}
+@media(max-height:500px){
+.market-dialog[data-section=machines][data-screen=market] .market-banner{display:none}
+.market-dialog[data-section=machines][data-screen=market] .market-tabs{padding:3px 0}
+.market-dialog[data-section=machines][data-screen=market] .market-tab{padding:3px 6px}
+.market-dialog[data-section=machines] .crop-cards{grid-auto-columns:180px}
+.machine-card .crop-card-content{padding:6px 8px 8px}
+.machine-card h3{font-size:16px;margin-bottom:5px}
+.machine-card .crop-description{font-size:12px;line-height:1.15;min-height:55px;margin-bottom:5px}
+.machine-card-prices strong{font-size:13px}.machine-card-prices img{width:18px;height:18px}.machine-card-prices>span{gap:3px}
+.machine-card-buy .crop-buy{font-size:12px!important;padding:5px 2px!important}
+}
+/* Work selection window, matching the approved ivory-and-gold render. */
+.machine-veil{position:fixed;inset:0;z-index:99;background:#052b1f88;backdrop-filter:blur(1px)}.machine-veil[hidden]{display:none}
+.machine-controls.is-dialog{top:50%;bottom:auto;transform:translate(-50%,-50%);display:block;width:min(1020px,92vw);max-height:82vh;overflow:auto;padding:22px 28px 25px;border:5px double #bd9345;border-radius:24px;background:linear-gradient(120deg,#fff8e5,#f6e7c6);box-shadow:0 16px 70px #001c1699,inset 0 0 0 2px #fff9e5;color:#57371c;font:16px/1.4 Georgia,serif}
+.machine-controls.is-dialog header{text-align:center;border-bottom:1px solid #c4a56b;margin:0 20% 18px;padding-bottom:12px}.machine-controls.is-dialog h2{font-size:38px;line-height:1.1;margin:0 0 5px}.machine-controls.is-dialog header p{font-size:21px;margin:0}.machine-controls.is-dialog .machine-close{position:absolute;right:14px;top:12px;border-radius:50%;width:44px;height:44px;padding:0;background:#fff2d1;color:#60391b;border:3px double #be9a52;box-shadow:0 2px 4px #5e391e40;font:32px Georgia}
+.machine-work-layout{display:grid;grid-template-columns:.95fr 1.1fr;gap:22px;align-items:center}.machine-work-art{position:relative;align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center}.machine-work-art>img{width:100%;max-height:340px;object-fit:cover;border-radius:20px;mask-image:radial-gradient(ellipse at center,#000 49%,transparent 75%)}.machine-controls.is-dialog .machine-work-art>button{background:transparent;border:0;color:#68502e;font-size:14px;margin-top:8px}.machine-work-options{min-width:0}.machine-work-options>label{margin-bottom:12px}
+.machine-modes{display:grid;grid-template-columns:1fr 1fr;gap:14px}.machine-controls .machine-mode{display:flex;flex-direction:column;align-items:center;justify-content:space-between;min-height:205px;background:#fff6dfb8;color:#623d21;border:4px double #be9b60;border-radius:17px;padding:15px 8px 10px}.machine-controls .machine-mode strong{font-size:21px}.machine-controls .machine-mode.selected{border-color:#418747;background:#f0f2cfbb;box-shadow:0 0 10px #629b4966,inset 0 0 8px #dbed9b}.machine-mode-art{height:110px;width:160px;position:relative}.machine-mode-art img{position:absolute;width:116px;left:22px;top:8px}.machine-mode-art.area img{width:87px}.machine-mode-art.area img:nth-child(1){left:37px;top:0}.machine-mode-art.area img:nth-child(2){left:0;top:21px}.machine-mode-art.area img:nth-child(3){left:74px;top:21px}.machine-mode-art.area img:nth-child(4){left:37px;top:42px}.machine-radio{width:24px;height:24px;border:2px solid #b39354;border-radius:50%;background:#fff7db}.selected .machine-radio{background:#156539;box-shadow:inset 0 0 0 3px #f8edba}
+.machine-summary{display:flex;justify-content:space-around;gap:8px;align-items:center;padding:14px 8px;border:1px solid #d3bb89;border-radius:12px;margin-top:17px;background:#fff8e488;font-size:16px}.machine-summary b{font-size:21px;color:#205533}.machine-summary .machine-fuel img{height:34px}.machine-hint{text-align:center;font-size:15px;min-height:40px;margin:12px 0 3px}.machine-refuel{text-align:center}.machine-controls .machine-refuel button{background:none;border:0;color:#79603b;font-size:14px;padding:4px}.machine-controls.is-dialog footer{display:flex;gap:15px;margin-top:16px}.machine-controls.is-dialog footer button{flex:1;font-size:21px;font-weight:bold;padding:12px 10px;border:4px double #b59c52;border-radius:13px;box-shadow:0 2px 5px #6c492c40}.machine-controls.is-dialog footer .machine-cancel{flex:.65;background:#f2e1c3;color:#624026}.machine-controls button:focus-visible{outline:3px solid #f2b633;outline-offset:3px}
+@media(max-width:720px){.machine-controls.is-dialog{padding:16px;width:94vw;max-height:85vh}.machine-work-layout{grid-template-columns:1fr}.machine-work-art{display:none}.machine-controls.is-dialog h2{font-size:29px}.machine-controls.is-dialog header{margin:0 45px 14px}.machine-controls.is-dialog header p{font-size:17px}.machine-controls .machine-mode{min-height:170px}.machine-controls .machine-mode strong{font-size:18px}.machine-summary{font-size:14px}.machine-controls.is-dialog footer button{font-size:18px}}
+@media(max-height:650px) and (min-width:721px){.machine-controls.is-dialog{padding:12px 22px;max-height:90vh}.machine-controls.is-dialog header{margin-bottom:10px;padding-bottom:8px}.machine-controls.is-dialog h2{font-size:30px}.machine-controls .machine-mode{min-height:160px}.machine-mode-art{height:85px}.machine-controls.is-dialog footer{margin-top:8px}.machine-summary{padding:8px;margin-top:10px}}
+/* Parked machinery has no powered beacon. The moving work sprite owns its light. */
+[data-machine] .machine-beacon{display:none;animation:none}
+[data-working-machine] .machine-beacon{display:block;animation:roof-beacon 1.1s steps(1,end) infinite}
+.decor-edge-controls{position:fixed;z-index:95;left:50%;bottom:168px;transform:translateX(-50%);display:flex;gap:5px;padding:7px;border:1px solid #c7aa69;background:#fff4d9;border-radius:13px;box-shadow:0 3px 12px #17362655}.decor-edge-controls[hidden]{display:none}.decor-edge-controls button{width:38px;height:36px;border:1px solid #bb9a59;border-radius:8px;background:#f8ebcf;color:#395530;font:bold 24px Georgia;cursor:pointer}.decor-edge-controls button[aria-pressed=true]{background:#225638;color:#ffedb0}.decor-edge-controls button:focus-visible{outline:3px solid #ffe09a}
+[data-crop-cell]>image{transition:height .8s linear,y .8s linear}
+@media(prefers-reduced-motion:reduce){[data-crop-cell]>image{transition:none}}
+@media(max-height:500px){.decor-edge-controls{bottom:120px}}
+/* The same product grid and purchase layout in All products and every category. */
+.market-dialog:not([data-screen=machine-detail]) .crop-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));grid-auto-flow:row;grid-auto-columns:auto;grid-auto-rows:auto;gap:14px;align-content:start;overflow:auto;scroll-snap-type:none;padding:2px 3px 12px}
+.market-dialog .crop-card{display:flex;flex-direction:column;min-height:0;content-visibility:auto;contain-intrinsic-size:auto 400px}.market-dialog .crop-card .crop-art{width:100%;height:170px!important;aspect-ratio:auto;padding:6px 6px 0}.market-dialog .crop-card .crop-art img{object-fit:contain;mix-blend-mode:normal;background:transparent}.market-dialog .machine-card .crop-art img{object-fit:cover;border-radius:8px}.market-dialog .crop-card .crop-card-content{padding:12px;gap:0;text-align:center}.market-dialog .crop-card h3{font-size:23px;line-height:1.15;min-height:53px;margin:0 0 6px;display:flex;align-items:center;justify-content:center}.market-dialog .crop-description{font-size:14px;line-height:1.35;min-height:38px;max-height:none;margin:0 0 8px;text-align:center}.market-dialog .crop-card dl{display:flex;justify-content:center;flex-wrap:wrap;gap:7px 14px;font-size:14px;margin:0 0 12px}.market-dialog .crop-card dt img{width:20px;height:22px;object-fit:contain}.market-dialog .crop-card dd{white-space:normal}.market-dialog .crop-price{justify-content:center;flex-wrap:wrap;margin-top:auto;gap:7px;min-height:48px}.market-dialog .crop-price strong{font-size:23px}.market-dialog .crop-price>span{margin:0;max-width:none;flex-basis:100%;text-align:center;font-size:13px}.market-dialog .crop-card .crop-buy{font-size:18px!important;padding:10px 5px!important;line-height:1.25;min-height:46px}.market-dialog .crop-buy::before,.market-dialog .crop-buy::after{display:none}.market-dialog .seed-owned{position:static;width:auto;display:flex;flex-direction:row;min-height:44px}.market-dialog .seed-reserve{text-align:left}.market-dialog .machine-card-prices{display:none}
+.market-dialog .market-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));align-items:stretch;overflow:visible;gap:7px}.market-dialog .market-tab{display:flex;justify-content:center;align-items:center;gap:7px;white-space:normal;text-align:center;font-size:17px!important;min-height:53px;padding:8px 6px!important;line-height:1.15}.market-tab .category-icon{width:22px;height:22px}.market-tab>span:last-child{flex:0 1 auto;text-align:center}.market-dialog .currency-filters{align-items:stretch;gap:7px}.market-dialog .currency-filters button{height:42px;min-width:110px;justify-content:center;align-items:center;padding:6px 10px;border:3px double #caae7b;border-radius:10px;font-size:14px}.market-dialog .currency-filters button[aria-pressed=true]{padding:6px 10px}.market-dialog .currency-filters img{width:24px;height:24px;flex-shrink:0}.market-dialog .availability-check{display:grid;place-items:center;width:20px;height:20px;border:1px solid currentColor;border-radius:5px;font:16px Arial}.market-dialog .market-filters{flex-wrap:wrap;gap:10px}.market-dialog .market-search{flex:1 1 170px}.market-dialog .market-sort select{height:42px}
+.market-dialog::backdrop{background:#092e20b3;backdrop-filter:blur(2px)}.market-dialog .market-foot{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px 24px;padding:10px 30px 0;font-size:14px;text-align:center}.market-tip,.market-result{display:flex;justify-content:center;align-items:center;gap:8px;min-height:34px;border:1px solid #d4bc89;border-radius:10px;padding:4px 12px;background:#fff8e5}.market-tip>img{width:30px;height:27px;object-fit:contain}.market-result .category-icon{width:22px;height:22px}.market-foot .market-tip>span{white-space:normal}.market-dialog [data-design=machinery-v89] .machine-detail-prices{min-width:0}.machine-detail-prices>button{min-width:0;white-space:normal}
+@media(max-width:850px){.market-dialog .market-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.market-dialog .market-tab{min-height:42px;font-size:15px!important}.market-dialog .market-foot{padding-inline:10px}.market-dialog .market-banner{min-height:65px}.market-dialog .market-banner p{display:none}.market-dialog .market-banner h2{font-size:30px}.market-dialog .market-logo{width:190px}}
+@media(max-height:600px){.market-dialog .market-top{min-height:40px;padding-bottom:5px}.market-dialog .market-logo{height:38px}.market-dialog .market-banner{display:none}.market-dialog .market-tabs{padding:5px 0}.market-dialog .market-tab{min-height:35px;font-size:14px!important}.market-dialog .crop-card .crop-art{height:145px!important}.market-dialog .market-foot{padding-top:5px;font-size:13px}.market-dialog .market-purse{font-size:14px}.market-dialog .market-purse img{width:23px;height:23px}.market-dialog .market-filters{padding-bottom:7px}.market-dialog .crop-card h3{font-size:21px}}
+.market-dialog:not([data-screen=machine-detail]) .crop-cards{grid-auto-rows:max-content}.market-dialog .crop-card{min-height:max-content;content-visibility:visible;contain-intrinsic-size:none}.market-dialog .crop-card .crop-card-content{flex:1 0 auto}.market-dialog .market-tip>img{border-radius:7px;background:#1d4d31;padding:2px}
+
+.decor-actions{position:fixed;z-index:94;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;max-width:calc(100vw - 24px);width:max-content;padding:10px 14px;border:1px solid #d9bb72;border-radius:14px;background:#173d24f5;color:#fff0c4;box-shadow:0 4px 16px #10261966;font:15px system-ui}.decor-actions[hidden]{display:none}.decor-actions button,.decor-actions .decor-rotate{position:static;transform:none;visibility:visible;display:block;height:auto;min-height:44px;border:1px solid #d9bb72;border-radius:8px;padding:8px 12px;background:#285b3c;color:#fff0c4;font:inherit;cursor:pointer}.decor-actions button:disabled{opacity:.4}.decor-actions button:focus-visible{outline:3px solid #ffe09a}.decor-actions .decor-rotate:before{display:none}body:has(.machine-controls:not([hidden])) .decor-actions,body:has(.harvest-panel:not([hidden])) .decor-actions{display:none}[data-decor-id]:focus-visible polygon{stroke:#ffe09a;stroke-width:2}
+
+.machine-controls.is-placement{display:grid;grid-template-columns:minmax(0,1fr) 35px;column-gap:12px;row-gap:3px;width:max-content;max-width:min(320px,calc(100vw - 28px));padding:10px 12px;text-align:left}.machine-controls.is-placement>strong{grid-column:1;font-size:15px}.machine-controls.is-placement>span{grid-column:1;text-align:left;font-size:14px;max-width:none}.machine-controls.is-placement>[data-cancel]{grid-column:2;grid-row:1 / 3}
+
+/* Field work has one dock-side strip. Text leaves the map interactive. */
+.machine-controls.is-field-work:not(.is-placement){
+ bottom:calc(var(--field-bottom,100px) + 3px);
+ box-sizing:border-box;
+ width:max-content;
+ max-width:calc(100vw - 16px);
+ min-height:38px;
+ padding:3px 5px 3px 10px;
+ gap:7px;
+ flex-wrap:nowrap;
+ border:1px solid #b9a05d;
+ border-radius:16px;
+ background:#173b28ed;
+ color:#fff4d5;
+ box-shadow:none;
+ font:13px system-ui,sans-serif;
+ pointer-events:none;
+}
+.machine-controls.is-field-work strong,
+.machine-controls.is-field-work>span:not(.machine-fuel){
+ flex-basis:auto;
+ font-size:inherit;
+ white-space:nowrap;
+}
+.machine-controls.is-field-work .machine-work-hint{
+ min-width:0;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ color:#dce8cb;
+}
+.machine-controls.is-field-work .machine-bed-count,
+.machine-controls.is-field-work .machine-fuel{flex-shrink:0;white-space:nowrap;font-variant-numeric:tabular-nums}
+.machine-controls.is-field-work button,
+.machine-controls.is-field-work select{pointer-events:auto;flex-shrink:0}
+.machine-controls.is-field-work select{max-width:min(32vw,180px)}
+.machine-controls.is-field-work .harvest-close[data-cancel]{
+ width:32px;min-width:32px;height:32px;min-height:32px;flex-basis:32px;
+ border:1px solid #c7ac6b;background:#285037;color:#fff4d5;box-shadow:none;
+}
+@media(max-width:520px){
+ .machine-controls.is-field-work .machine-work-hint{display:none}
+ .machine-controls.is-field-work:not(.is-placement){gap:5px;font-size:12px}
+}
+@media(pointer:coarse){
+ .machine-controls.is-field-work .harvest-close[data-cancel]{width:44px;min-width:44px;height:44px;min-height:44px;flex-basis:44px}
+}
