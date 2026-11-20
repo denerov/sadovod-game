@@ -98,7 +98,7 @@ test('expanded map masks, camera synchronisation, resolution and terrain edits',
  assert.equal(f.root.style.visibility, 'hidden');
  assert.equal(f.canvas.width, 1688);
  const overview = f.rasters[0];
- assert.ok(overview.width <= 1024);
+ assert.ok(overview.width <= 4096);
  assert.ok(overview.text.includes('x="-1156" y="-4" width="3080" height="1544"'));
  assert.ok(f.rasters.slice(1).every(r => r.width === 400 && r.height === 400));
  assert.ok(f.draws.some(args => args.length === 9 && args[1] === 8 && args[3] === 384 && args[7] === 96));

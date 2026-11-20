@@ -2,7 +2,7 @@
 // detail tiles are prepared only for the visible area and reused while moving.
 const svg = document.querySelector('.plot');
 const canvas = document.querySelector('.terrain-chunk-screen');
-const ctx = canvas?.getContext('2d', {alpha: true, desynchronized: true});
+const ctx = canvas?.getContext('2d', {alpha: true});
 const TILE = 96;
 const GUTTER = 2;
 const MAX_PARALLEL = 2;
@@ -17,6 +17,7 @@ let queue = [];
 let active = 0;
 let frame = 0;
 let rebuilding = 0;
+let detailTimer = 0;
 let signature = '';
 let materialsRevision = 0;
 let cachePixels = 0;
@@ -104,6 +105,7 @@ function paint() {
  ctx.setTransform(view.scale * dpr, 0, 0, view.scale * dpr, view.x * dpr, view.y * dpr);
  const box = overview.box;
  ctx.drawImage(overview.image, box.x, box.y, box.width, box.height);
+ if (view.scale * dpr <= overview.density) return;
  const left = -view.x / view.scale;
  const top = -view.y / view.scale;
  const right = (view.width - view.x) / view.scale;
@@ -132,6 +134,11 @@ function trimCache() {
 
 function scheduleVisible() {
  if (!source || !view || !overview || source.generation !== overview.generation) return;
+ if (view.scale * pixelRatio() <= overview.density) {
+  required = new Map();
+  queue = [];
+  return;
+ }
  const density = Math.min(16, Math.max(1, 2 ** Math.ceil(Math.log2(view.scale * pixelRatio()))));
  const left = Math.max(source.box.x, -view.x / view.scale);
  const top = Math.max(source.box.y, -view.y / view.scale);
@@ -150,11 +157,13 @@ function scheduleVisible() {
  const centerY = (top + bottom) / 2;
  queue.sort((a, b) => Math.hypot(a.x + TILE / 2 - centerX, a.y + TILE / 2 - centerY) - Math.hypot(b.x + TILE / 2 - centerX, b.y + TILE / 2 - centerY));
  trimCache();
- pump();
+ clearTimeout(detailTimer);
+ detailTimer = setTimeout(pump, 100);
 }
 
 const pending = new Set();
 function pump() {
+ detailTimer = 0;
  while (active < MAX_PARALLEL && queue.length) {
   const job = queue.shift();
   const current = source;
@@ -171,7 +180,7 @@ function pump() {
     queuePaint();
    })
    .catch(error => console.error('Terrain detail tile', error))
-   .finally(() => {pending.delete(requestKey); active--; pump()});
+   .finally(() => {pending.delete(requestKey); active--; if (!detailTimer) pump()});
  }
 }
 
@@ -186,15 +195,16 @@ async function rebuild() {
  source = next;
  queue = [];
  try {
-  // Bound the overview to about 1 MP even for the complete expanded map.
-  const density = Math.min(1, 1024 / Math.max(next.box.width, next.box.height));
+  // A single 1x overview is sufficient for an entire zoomed-out farm.
+  // Avoid decoding hundreds of tiny SVG tiles at distant camera scales.
+  const density = Math.min(1, 4096 / Math.max(next.box.width, next.box.height));
   const image = await raster(next, next.box, density);
   if (next !== source) {release(image); return}
   release(overview?.image);
   for (const tile of tiles.values()) release(tile.image);
   tiles = new Map();
   cachePixels = 0;
-  overview = {...next, image};
+  overview = {...next, image, density};
   root.style.visibility = 'hidden';
   const contact = root.querySelector('[data-landscape-layer="ObjectContact"]');
   if (contact) contact.style.visibility = 'visible';
