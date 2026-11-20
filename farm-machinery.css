@@ -141,7 +141,67 @@ body:has(.machine-controls:not([hidden])) .decor-rotate{visibility:hidden}
 
 .decor-actions{position:fixed;z-index:94;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;max-width:calc(100vw - 24px);width:max-content;padding:10px 14px;border:1px solid #d9bb72;border-radius:14px;background:#173d24f5;color:#fff0c4;box-shadow:0 4px 16px #10261966;font:15px system-ui}.decor-actions[hidden]{display:none}.decor-actions button,.decor-actions .decor-rotate{position:static;transform:none;visibility:visible;display:block;height:auto;min-height:44px;border:1px solid #d9bb72;border-radius:8px;padding:8px 12px;background:#285b3c;color:#fff0c4;font:inherit;cursor:pointer}.decor-actions button:disabled{opacity:.4}.decor-actions button:focus-visible{outline:3px solid #ffe09a}.decor-actions .decor-rotate:before{display:none}body:has(.machine-controls:not([hidden])) .decor-actions,body:has(.harvest-panel:not([hidden])) .decor-actions{display:none}[data-decor-id]:focus-visible polygon{stroke:#ffe09a;stroke-width:2}
 
-.machine-controls.is-placement{display:grid;grid-template-columns:minmax(0,1fr) 35px;column-gap:12px;row-gap:3px;width:max-content;max-width:min(320px,calc(100vw - 28px));padding:10px 12px;text-align:left}.machine-controls.is-placement>strong{grid-column:1;font-size:15px}.machine-controls.is-placement>span{grid-column:1;text-align:left;font-size:14px;max-width:none}.machine-controls.is-placement>[data-cancel]{grid-column:2;grid-row:1 / 3}
+/* Placement stays in a compact side card while the map remains interactive. */
+.machine-controls.is-placement{
+ box-sizing:border-box;
+ left:auto;
+ right:max(12px,env(safe-area-inset-right));
+ top:50%;
+ bottom:auto;
+ transform:translateY(-50%);
+ display:grid;
+ grid-template-columns:minmax(0,1fr) auto;
+ align-items:center;
+ gap:8px 10px;
+ width:clamp(156px,24vw,216px);
+ max-width:calc(100vw - 24px);
+ max-height:calc(100dvh - 32px);
+ overflow:auto;
+ padding:12px;
+ border:1px solid #bea46a;
+ border-radius:14px;
+ background:linear-gradient(145deg,#fffbed,#eee6ca);
+ box-shadow:0 4px 14px #102a2940,inset 0 1px #fffef7;
+ color:#263e2b;
+ text-align:left;
+ font:14px/1.4 system-ui,sans-serif;
+}
+.machine-controls.is-placement>.placement-name{
+ min-width:0;
+ grid-column:1;
+ margin:0;
+ overflow-wrap:anywhere;
+ font:700 16px/1.25 Georgia,serif;
+}
+.machine-controls.is-placement>.placement-hint{
+ grid-column:1 / -1;
+ margin:0;
+ color:#4c5c48;
+ text-align:left;
+ font-size:14px;
+ line-height:1.4;
+}
+.machine-controls.is-placement>.placement-done{
+ grid-column:2;
+ grid-row:1;
+ min-width:68px;
+ min-height:44px;
+ padding:8px 10px;
+ border:1px solid #496d47;
+ border-radius:9px;
+ background:#28563a;
+ color:#fff9e8;
+ box-shadow:inset 0 1px #ffffff24;
+ font:600 14px/1.2 system-ui,sans-serif;
+}
+.machine-controls.is-placement>.placement-done:hover{background:#356b47}
+.machine-controls.is-placement>.placement-done:focus-visible{outline:3px solid #d5a653;outline-offset:2px}
+@media(max-width:600px){
+ .machine-controls.is-placement{grid-template-columns:1fr}
+ .machine-controls.is-placement>.placement-name{grid-column:1}
+ .machine-controls.is-placement>.placement-hint{grid-column:1;grid-row:2}
+ .machine-controls.is-placement>.placement-done{grid-column:1;grid-row:3}
+}
 
 /* Field work has one dock-side strip. Text leaves the map interactive. */
 .machine-controls.is-field-work:not(.is-placement){

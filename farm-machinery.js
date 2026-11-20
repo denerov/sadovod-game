@@ -59,7 +59,19 @@ function bedQuota(){
 function toolbar(){
  bar.classList.toggle('is-placement',!!purchase);bar.classList.toggle('is-field-work',!purchase&&!!selection&&!TREES[selection.type]);bar.classList.toggle('is-active',!!active);positionPurchaseControls();if(purchase&&isFence(purchase)){bar.hidden=true;veil.hidden=true;bar.classList.remove('is-dialog');return;}
  veil.hidden=true;bar.classList.remove('is-dialog');bar.setAttribute('role','region');bar.removeAttribute('aria-modal');
- if(purchase){bar.hidden=false;bar.innerHTML=`<strong>${PRODUCTS[purchase.type].name}</strong><span>${purchase.loading?'Подготавливаем предмет…':({water:'Выберите клетку воды',bridge:'Можно на суше и воде. Поворот — R или ↻',shore:'Поставьте у берега: задняя часть на суше',"water-pen":'Квадрат воды 3×3 рядом с берегом'})[PRODUCTS[purchase.type].placementRule]||'Выберите свободное место'} · Можно ставить несколько. Рука или Esc — закончить.</span><button class="harvest-close" data-cancel aria-label="Отменить установку"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 3L13 13M13 3L3 13"/></svg></button>`;return}
+ if(purchase){
+  bar.hidden=false;
+  bar.setAttribute('aria-label','Размещение предмета');
+  const hint=purchase.loading?'Подготавливаем предмет…':({
+   water:'Выберите клетку воды.',
+   bridge:'Суша или вода. Поворот — R или ↻.',
+   shore:'Поставьте задней частью на берег.',
+   'water-pen':'Вода 3×3 рядом с берегом.'
+  })[PRODUCTS[purchase.type].placementRule]||'Нажмите на свободную клетку.';
+  bar.innerHTML=`<strong class="placement-name">${PRODUCTS[purchase.type].name}</strong><button class="placement-done" data-cancel aria-label="Завершить размещение">Готово</button><span class="placement-hint" role="status">${hint}</span>`;
+  return;
+ }
+ bar.setAttribute('aria-label','Управление техникой');
  if(!selection){bar.hidden=true;return}if(TREES[selection.type]){bar.hidden=true;openTree(selection);return}bar.hidden=false;
  const def=MACHINES[selection.type],s=crops().getState();
  if(active){bar.innerHTML=`<strong>${def.verb}</strong><span role="status"><b data-work-count>${active.done}</b>/${active.total}</span><button data-stop aria-label="Остановить работу">Стоп</button>`;return}
