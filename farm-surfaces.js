@@ -9,7 +9,7 @@ import {roundedBed} from './terrain-details.js?v=258';
 import {bedEdgeNodes} from './bed-surface.js?v=258';
 import {PaintedTurfEdge} from './painted-turf-edge.js?v=262';
 import {bedCoverage} from './terrain-boundaries.js?v=258';
-import {TerrainRenderer,terrainPixelRatio} from './terrain-svg-renderer.js?v=297';
+import {TerrainRenderer,terrainPixelRatio} from './terrain-svg-renderer.js?v=20261120';
 (() => {
  const svg=document.querySelector('.plot'),NS='http://www.w3.org/2000/svg';
  const node=(tag,attrs={})=>{const n=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,v);return n};
