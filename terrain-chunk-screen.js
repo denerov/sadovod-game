@@ -17,7 +17,7 @@ let queue = [];
 let active = 0;
 let frame = 0;
 let rebuilding = 0;
-let detailTimer = 0;
+let detailWork = 0;
 let signature = '';
 let materialsRevision = 0;
 let cachePixels = 0;
@@ -157,14 +157,28 @@ function scheduleVisible() {
  const centerY = (top + bottom) / 2;
  queue.sort((a, b) => Math.hypot(a.x + TILE / 2 - centerX, a.y + TILE / 2 - centerY) - Math.hypot(b.x + TILE / 2 - centerX, b.y + TILE / 2 - centerY));
  trimCache();
- clearTimeout(detailTimer);
- detailTimer = setTimeout(pump, 100);
+ requestDetails();
 }
 
 const pending = new Set();
+function requestDetails() {
+ if (detailWork || active >= MAX_PARALLEL || !queue.length) return;
+ if (typeof window.requestIdleCallback === 'function') {
+  detailWork = window.requestIdleCallback(deadline => {
+   detailWork = 0;
+   // Leave the next animation frame room to paint. There is no forced timeout
+   // that can start a decode while a busy camera is still using that budget.
+   if (deadline.timeRemaining() < 6) {requestDetails(); return}
+   pump();
+  });
+ } else {
+  // Start a single job after the next paint on browsers without idle callbacks.
+  detailWork = requestAnimationFrame(() => setTimeout(() => {detailWork = 0; pump()}, 0));
+ }
+}
 function pump() {
- detailTimer = 0;
- while (active < MAX_PARALLEL && queue.length) {
+ if (active >= MAX_PARALLEL) return;
+ while (queue.length) {
   const job = queue.shift();
   const current = source;
   const requestKey = `${current.generation}:${job.key}`;
@@ -180,7 +194,10 @@ function pump() {
     queuePaint();
    })
    .catch(error => console.error('Terrain detail tile', error))
-   .finally(() => {pending.delete(requestKey); active--; if (!detailTimer) pump()});
+   .finally(() => {pending.delete(requestKey); active--; requestDetails()});
+  // One new decode per available idle slot, at most two in flight.
+  requestDetails();
+  break;
  }
 }
 

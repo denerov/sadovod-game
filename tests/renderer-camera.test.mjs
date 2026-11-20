@@ -26,9 +26,9 @@ test('objects keep the exact terrain projection at every camera position', () =>
  }
 });
 
-function fixture() {
+function fixture({idle = false, autoIdle = true} = {}) {
  const listeners = new Map(), timers = new Map(), frames = new Map(), urls = new Map();
- const rasters = [], draws = [];
+ const rasters = [], draws = [], idleCallbacks = new Map();
  let id = 0, clones = 0;
  const makeNode = (kind, attrs = {}) => ({
   attrs: {...attrs}, style: {},
@@ -62,6 +62,14 @@ function fixture() {
   addEventListener(name, callback) {listeners.set(name, callback)},
   async createImageBitmap(image) {return {width: image.width, height: image.height, close() {this.closed = true}}},
  };
+ if (idle) window.requestIdleCallback = callback => {const key = ++id; idleCallbacks.set(key, callback); return key};
+ const flushIdle = budget => {
+  const entry = idleCallbacks.entries().next().value;
+  if (!entry) return;
+  const [key, callback] = entry;
+  idleCallbacks.delete(key);
+  callback({timeRemaining: () => budget});
+ };
  class Image {
   async decode() {
    const text = await urls.get(this.src).text();
@@ -81,11 +89,12 @@ function fixture() {
  const settle = async () => {
   for (let i = 0; i < 100; i++) {
    for (const [key, callback] of [...timers]) {timers.delete(key); callback()}
+   if (autoIdle) flushIdle(12);
    await new Promise(resolve => setImmediate(resolve));
    for (const [key, callback] of [...frames]) {frames.delete(key); callback()}
   }
  };
- return {context, root, canvas, ctx, emit, settle, rasters, draws, get clones() {return clones}};
+ return {context, root, canvas, ctx, emit, settle, rasters, draws, flushIdle, get idleCount() {return idleCallbacks.size}, get clones() {return clones}};
 }
 
 const terrainSource = await fs.readFile(new URL('../terrain-chunk-screen.js', import.meta.url), 'utf8');
@@ -119,4 +128,25 @@ test('expanded map masks, camera synchronisation, resolution and terrain edits',
  f.emit('sadovod:terrain-ready');
  await f.settle();
  assert.equal(f.clones, clones + 1, 'terrain painting must rebuild the bitmap cache');
+});
+
+
+test('detail decoding uses spare frame time and the latest camera request', async () => {
+ const f = fixture({idle: true, autoIdle: false});
+ vm.runInContext(terrainSource, f.context);
+ const view = {width: 844, height: 390, scale: 2, x: -300, y: -1100};
+ f.emit('sadovod:camera-frame', view);
+ await f.settle();
+ assert.equal(f.rasters.length, 1, 'the overview is usable before detail decoding');
+ assert.equal(f.idleCount, 1);
+ f.flushIdle(0);
+ await f.settle();
+ assert.equal(f.rasters.length, 1, 'a busy frame must not start detail decoding');
+ assert.equal(f.idleCount, 1, 'only one idle request may remain scheduled');
+ f.emit('sadovod:camera-frame', {...view, scale: 4});
+ f.flushIdle(12);
+ await f.settle();
+ assert.equal(f.rasters.length, 2, 'one idle slot starts one detail tile');
+ assert.equal(f.rasters[1].width, 800, 'queued work uses the latest zoom level');
+ assert.equal(f.idleCount, 1);
 });
