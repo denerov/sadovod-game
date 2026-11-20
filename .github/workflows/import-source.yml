@@ -1,0 +1,32 @@
+name: Import verified Sadovod build
+on:
+  push:
+    branches: [asset-import-20261120]
+permissions:
+  contents: write
+concurrency:
+  group: sadovod-source-import
+  cancel-in-progress: false
+jobs:
+  import:
+    if: github.event.head_commit.message == 'Import verified Sadovod build'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify and import the saved build
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .source-import/part-* > "$RUNNER_TEMP/sadovod.bundle"
+          printf '%s  %s\n' 'b505388e548a06f1fb198a02842dead08c09e17664e52c8bc5cb3cb2dcf1d836' "$RUNNER_TEMP/sadovod.bundle" | sha256sum -c -
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = 0375f82e3efc2b009ae6e8d1d299dc83f3241a90
+          git bundle verify "$RUNNER_TEMP/sadovod.bundle"
+          git fetch "$RUNNER_TEMP/sadovod.bundle" refs/heads/main:refs/remotes/saved-build/main
+          test "$(git rev-parse refs/remotes/saved-build/main)" = e44f317e97d713a1337c8edb8acfd9c9eed75594
+          git merge-base --is-ancestor origin/main refs/remotes/saved-build/main
+          git push origin refs/remotes/saved-build/main:refs/heads/main
+      - name: Remove completed transfer branch
+        run: git push origin --delete asset-import-20261120
