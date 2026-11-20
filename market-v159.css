@@ -1,5 +1,5 @@
-@font-face{font-family:'Sadovod Market';src:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-fonts/regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap;}
-@font-face{font-family:'Sadovod Market';src:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-fonts/bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Sadovod Market';src:url('./assets/market-fonts/regular.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Sadovod Market';src:url('./assets/market-fonts/bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap;}
 /* Single market stylesheet. Approved controls; full illustrations; intrinsic content sizing. */
 
 .shop-dialog:not([open]){display:none;}
@@ -96,7 +96,7 @@
 .shop-dialog .product-detail-purchase{margin-top:18px;padding-top:14px;border-top:1px solid #d1b582;}
 .shop-dialog .product-detail-purchase .currency-purchase{min-height:54px;font-size:25px;}
 .shop-dialog .product-detail-purchase .currency-purchase img{width:36px;height:36px;}
-.shop-dialog .market-back::before{content:'';width:24px;height:24px;flex:none;background:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/ui-v109/back-arrow.svg') center/contain no-repeat;}
+.shop-dialog .market-back::before{content:'';width:24px;height:24px;flex:none;background:url('./assets/ui-v109/back-arrow.svg') center/contain no-repeat;}
 .shop-dialog[data-screen=land]{gap:10px;}
 .shop-dialog[data-screen=land] .land-heading{display:flex;align-items:center;gap:20px;flex:none;}
 .shop-dialog[data-screen=land] .market-back{position:static;margin:0;flex:none;}
@@ -228,7 +228,7 @@
 .land-detail-purchase strong{font-size:19px;}
 }
 
-.shop-dialog{text-size-adjust:100%;-webkit-text-size-adjust:100%;--paper:#fff6e3;--ink:#4a2e17;--gold:#c99535;--green:#145032;box-sizing:border-box;position:fixed;inset:0;width:min(1520px,calc(100vw - 12px));height:calc(100dvh - 12px);max-width:none;max-height:none;margin:auto;padding:12px 20px 10px;border:4px double var(--gold);border-radius:18px;background:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-v86/corner-tl.webp') left top/240px auto no-repeat,url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-v86/corner-br.webp') right bottom/240px auto no-repeat,var(--paper);color:var(--ink);font:16px/1.3 'Sadovod Market',Georgia,serif;text-align:left;overflow:hidden;box-shadow:inset 0 0 0 2px #fffbe9,0 18px 60px #10251870;}
+.shop-dialog{text-size-adjust:100%;-webkit-text-size-adjust:100%;--paper:#fff6e3;--ink:#4a2e17;--gold:#c99535;--green:#145032;box-sizing:border-box;position:fixed;inset:0;width:min(1520px,calc(100vw - 12px));height:calc(100dvh - 12px);max-width:none;max-height:none;margin:auto;padding:12px 20px 10px;border:4px double var(--gold);border-radius:18px;background:url('./assets/market-v86/corner-tl.webp') left top/240px auto no-repeat,url('./assets/market-v86/corner-br.webp') right bottom/240px auto no-repeat,var(--paper);color:var(--ink);font:16px/1.3 'Sadovod Market',Georgia,serif;text-align:left;overflow:hidden;box-shadow:inset 0 0 0 2px #fffbe9,0 18px 60px #10251870;}
 .shop-dialog .market-top{display:flex;align-items:center;gap:12px;flex:none;}
 .shop-dialog .market-logo{width:195px;height:52px;object-fit:contain;}
 .shop-dialog .market-top h2{font:700 clamp(22px,2.3vw,36px)/1.05 'Sadovod Market',Georgia,serif;flex:1;margin:0;min-width:0;}

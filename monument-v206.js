@@ -2,7 +2,7 @@
 export const STAKHANOV_MONUMENT={
  name:'Памятник А. Г. Стаханову',category:'decor',subcategory:'statues',
  cost:null,coal:60,level:1,size:1,canvasHeight:110,rotationLocked:true,
- placementRule:'land',icon:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/monument-v206/stakhanov.webp',
+ placementRule:'land',icon:'./assets/monument-v206/stakhanov.webp',
  description:'Памятник открыт 31 августа 1985 года в Стаханове и посвящён прославленному шахтёру-новатору. Он воздвигнут на площади в центре города: отлитый в бронзе молодой Алексей Стаханов широко шагает после трудовой смены с отбойным молотком на плече. Памятник был открыт в рамках празднования 50-летнего юбилея Стахановского движения.'
 };
 export const STAKHANOV_SCENE={src:STAKHANOV_MONUMENT.icon,width:1145,height:1374};

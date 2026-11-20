@@ -8,7 +8,7 @@ import {CATALOG,spriteBox} from './decor-model.js?v=268';
 import {GROWING_PLANTS,initialisePlant,plantStage} from './plant-growth-model.js?v=264';
 import {landCells} from './land-model.js?v=182';
 const svg=document.querySelector('#world'),renderer=new TerrainRenderer(svg),cells=landCells(0),groups=[],ns='http://www.w3.org/2000/svg';renderer.update(cells);renderer.setView({scale:3});
-const catalog=await fetch('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/growth-v264/catalog.json').then(r=>r.json()),selector=document.querySelector('#species');let rotation=0;
+const catalog=await fetch('./assets/growth-v264/catalog.json').then(r=>r.json()),selector=document.querySelector('#species');let rotation=0;
 for(const type of GROWING_PLANTS){const option=document.createElement('option');option.value=type;option.textContent=CATALOG[type].name;selector.append(option)}selector.value='black_currant';
 function draw(){for(const g of groups){removeGrounding(g);g.remove()}groups.length=0;
  const type=selector.value,labels=['Саженец','Молодое растение','Взрослая листва','Зрелое растение'];

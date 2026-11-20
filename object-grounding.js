@@ -10,7 +10,7 @@ const random=(x,y)=>{let s=Math.imul(Math.round(x*79),374761393)^Math.imul(Math.
 export const WORLD_LIGHT={x:.42,y:.22};
 export function shadowAssetKey(frame,plant=false,bridge=false){return JSON.stringify([frame.src,frame.width,frame.height,frame.anchorX,frame.anchorY,frame.projection||null,frame.groundEnds||null,frame.groundPolygon||null,plant,bridge])}
 const plantFeetReady=typeof window==='undefined'?Promise.resolve({}):
- fetch('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/plant-feet-v269.json').then(r=>r.ok?r.json():{}).catch(()=>({}));
+ fetch('./assets/plant-feet-v269.json').then(r=>r.ok?r.json():{}).catch(()=>({}));
 export const isPlant=o=>!isBridge(o)&&(!!TREES[o.type]||CATALOG[o.type]?.category==='trees'||/дерев|куст|смородин|крыжовник|самшит|гортензи|можжевельник/i.test(CATALOG[o.type]?.name||''));
 export function plantRootGeometry(x,y,radius,cells,profile=[]){
  const blades=['',''];let shade='';

@@ -136,4 +136,5 @@ for(const script of document.querySelectorAll('script[type="application/x-sadovo
  const link=document.createElement('link');link.rel=script.dataset.scriptType==='module'?'modulepreload':'preload';
  if(link.rel==='preload')link.as='script';link.href=script.src;document.head.append(link);
 }
-run();
+if(document.documentElement.hasAttribute('data-local-save'))startLocal();
+else run();

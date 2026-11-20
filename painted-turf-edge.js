@@ -3,7 +3,7 @@ const NS='http://www.w3.org/2000/svg',SIZE=96,SCALE=5;
 let material;
 function loadMaterial(){
  return material??=(async()=>{
-  const image=new Image();image.src='https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/terrain-v252/grass-cut.png';await image.decode();
+  const image=new Image();image.src='./assets/terrain-v252/grass-cut.png';await image.decode();
   const canvas=document.createElement('canvas');canvas.width=image.width;canvas.height=image.height;
   const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);
   const rgba=ctx.getImageData(0,0,image.width,image.height).data,edge=[];

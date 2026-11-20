@@ -1,6 +1,6 @@
 // Approved park artwork and ruble prices (13 Oct 2026). New production balance remains pending.
-const art=id=>`https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/park-v181/${id==='curb_daisy'?'curb_limestone':id}-0.webp`;
-const harvest=id=>`https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/park-v181/harvest-${id}.webp`;
+const art=id=>`./assets/park-v181/${id==='curb_daisy'?'curb_limestone':id}-0.webp`;
+const harvest=id=>`./assets/park-v181/harvest-${id}.webp`;
 export const PARK_FENCE_NAMES={
  park_fence_white:'Белый штакетник',park_fence_iron:'Парковая ограда',park_fence_willow:'Ивовый плетень',
  park_fence_ranch:'Американское ранчо',park_fence_cedar:'Кедровый забор',park_fence_horizontal:'Шоколадный забор',

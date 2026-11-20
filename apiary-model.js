@@ -1,4 +1,4 @@
-export const BEE={name:'Донбасская пчела',cost:100,level:8,icon:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/animals-v158/donbas_bee-0.webp',description:'Живёт в пасеке и производит мёд. После покупки ждёт заселения.'};
+export const BEE={name:'Донбасская пчела',cost:100,level:8,icon:'./assets/animals-v158/donbas_bee-0.webp',description:'Живёт в пасеке и производит мёд. После покупки ждёт заселения.'};
 export const APIARY_CAPACITY=10;
 // Living flowering crops, not harvested inventory. Mature flowers remain a
 // nectar source until the player harvests them. Nectar never removes the crop.

@@ -18,6 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Download game artwork
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release download assets-20261120 --repo "$GITHUB_REPOSITORY" --pattern sadovod-assets-20261120.tar.gz --dir "$RUNNER_TEMP/sadovod-art"
+          printf '%s  %s\n' '04c5e0401111b66bc161e6ab2123f8dee15f7eb54b1c7f0eda3e753bfebfd4e8' "$RUNNER_TEMP/sadovod-art/sadovod-assets-20261120.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/sadovod-art/sadovod-assets-20261120.tar.gz"
+          test -s assets/terrain-v252/grass-cut.png
+          test -s assets/surfaces/grass-v44.webp
       - uses: actions/configure-pages@v5
         with:
           enablement: true

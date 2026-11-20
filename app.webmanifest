@@ -1,16 +1,16 @@
 {
-  "id": "/",
+  "id": "./",
   "name": "Садовод — новая история",
   "short_name": "Садовод",
   "lang": "ru",
-  "start_url": "/farm.html",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#254e2c",
   "theme_color": "#173d20",
   "icons": [
     {
-      "src": "https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/approved-dock/market.png",
+      "src": "./assets/approved-dock/market.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "any"

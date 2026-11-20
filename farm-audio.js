@@ -30,7 +30,7 @@ export class FarmAudio{
   }return this.loads.get(key);
  }
  drain(){while(this.loading<3&&this.jobs.length){const job=this.jobs.shift();this.loading++;
-  Promise.resolve().then(()=>this.fetchAsset(`https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/audio-v168/${job.key}.mp3`)).then(r=>{if(!r.ok)throw Error('Sound unavailable');return r.arrayBuffer()}).then(bytes=>this.context.decodeAudioData(bytes)).then(buffer=>{this.buffers.set(job.key,buffer);job.resolve(buffer)}).catch(error=>{this.loads.delete(job.key);job.reject(error)}).finally(()=>{this.loading--;this.drain()});
+  Promise.resolve().then(()=>this.fetchAsset(`./assets/audio-v168/${job.key}.mp3`)).then(r=>{if(!r.ok)throw Error('Sound unavailable');return r.arrayBuffer()}).then(bytes=>this.context.decodeAudioData(bytes)).then(buffer=>{this.buffers.set(job.key,buffer);job.resolve(buffer)}).catch(error=>{this.loads.delete(job.key);job.reject(error)}).finally(()=>{this.loading--;this.drain()});
  }}
  async play(key){
   if(!Object.hasOwn(SOUNDS,key)||!this.context||!this.enabled||!this.volume||this.hidden())return false;

@@ -4,7 +4,7 @@ const clamp=t=>Math.max(0,Math.min(1,t)),smooth=t=>{t=clamp(t);return t*t*(3-2*t
 export function createDigEffects(plot,image){
  const defs=node('defs'),mask=node('mask',{id:'shovel-ground-mask',maskUnits:'userSpaceOnUse',x:-10,y:-10,width:1700,height:1200}),white=node('rect',{x:-10,y:-10,width:1700,height:1200,fill:'white'}),cut=node('path',{fill:'black'});
  mask.append(white,cut);defs.append(mask);
- const turf=node('pattern',{id:'dig-turf',patternUnits:'userSpaceOnUse',width:160,height:160});turf.append(node('rect',{width:160,height:160,fill:'#278b32'}),node('image',{href:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/grass-v44.webp',width:160,height:160,opacity:.65}));defs.append(turf);plot.append(defs);
+ const turf=node('pattern',{id:'dig-turf',patternUnits:'userSpaceOnUse',width:160,height:160});turf.append(node('rect',{width:160,height:160,fill:'#278b32'}),node('image',{href:'./assets/surfaces/grass-v44.webp',width:160,height:160,opacity:.65}));defs.append(turf);plot.append(defs);
  const lip=node('g',{'pointer-events':'none'}),crease=node('ellipse',{rx:2.4,ry:.55,fill:'#3d3920',opacity:.55}),cover=node('path',{fill:'url(#dig-turf)'});lip.append(crease,cover);plot.append(lip);
  const dust=node('g',{'pointer-events':'none','data-dig-soil':'true'});plot.append(dust);
  const particles=Array.from({length:36},(_,i)=>{const seed=((i*37)%17)/17,p=node('ellipse',{rx:.55+seed*.9,ry:.4+seed*.65,fill:['#57321a','#79502b','#95663b','#684020'][i%4]});dust.append(p);return p});

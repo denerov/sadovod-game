@@ -19,7 +19,7 @@ import {TerrainRenderer,terrainPixelRatio} from './terrain-svg-renderer.js?v=297
  const paving=cleanPaving(savedPaving,cells),savePaving=()=>window.SadovodSave.setItem(PAVING_KEY,JSON.stringify(paving));
  const defs=node('defs'),clip=node('clipPath',{id:'farm-ground'});clip.append(node('path',{d:landBoundary(cells)}));
  const soil=node('pattern',{id:'dug-soil',patternUnits:'userSpaceOnUse',width:24,height:12});const soilImage=node('image',{width:24,height:12,preserveAspectRatio:'none'});soil.append(soilImage);defs.append(clip,soil);
- const restoredGrass=node('pattern',{id:'restored-grass',patternUnits:'userSpaceOnUse',width:46,height:44});restoredGrass.append(node('rect',{width:46,height:44,fill:'#278b32'}),node('image',{href:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/lawn-221.webp',width:46,height:44,opacity:.65}));defs.append(restoredGrass);
+ const restoredGrass=node('pattern',{id:'restored-grass',patternUnits:'userSpaceOnUse',width:46,height:44});restoredGrass.append(node('rect',{width:46,height:44,fill:'#278b32'}),node('image',{href:'./assets/surfaces/lawn-221.webp',width:46,height:44,opacity:.65}));defs.append(restoredGrass);
  const pavingLayer=node('g',{'pointer-events':'none','data-paving-layer':'true'}),pavingPatterns=new Set();
  const bedTurf=new PaintedTurfEdge(),bedLayer=node('g',{'pointer-events':'none'}),pendingLayer=node('g',{'pointer-events':'none'});svg.append(defs,pavingLayer,bedLayer,bedTurf.node,pendingLayer);
  const renderer=new TerrainRenderer(svg),beds=new Map(),markers=new Map(),rakeJobs=new Map();let signature='';
@@ -39,7 +39,7 @@ import {TerrainRenderer,terrainPixelRatio} from './terrain-svg-renderer.js?v=297
    }
   }
   bedTurf.update(bedCoverage(cells),{front:true,soil:false});
-  if(cells.includes('bed')&&!soilImage.hasAttribute('href'))soilImage.setAttribute('href','https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/bed-221.webp');
+  if(cells.includes('bed')&&!soilImage.hasAttribute('href'))soilImage.setAttribute('href','./assets/surfaces/bed-221.webp');
   cells.forEach((v,i)=>{const r=cellRow(i),c=cellColumn(i);
    if(v==='bed'&&!beds.has(i)){const g=node('g',{'data-dug-bed':i});g.append(node('path',{d:roundedBed(c,r),fill:'url(#dug-soil)'}));g.append(...bedEdgeNodes(roundedBed(c,r)));bedLayer.append(g);beds.set(i,g)}
    if(v!=='bed'&&beds.has(i)){beds.get(i).remove();beds.delete(i)}
@@ -73,14 +73,14 @@ import {TerrainRenderer,terrainPixelRatio} from './terrain-svg-renderer.js?v=297
  });
 
  // Progress is a small SVG clip; the full terrain repaints only when a cell completes.
- window.addEventListener('sadovod:tool-selected',e=>{if(e.detail.action==='dig')soilImage.setAttribute('href','https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/bed-221.webp')});
+ window.addEventListener('sadovod:tool-selected',e=>{if(e.detail.action==='dig')soilImage.setAttribute('href','./assets/surfaces/bed-221.webp')});
  const roadPattern=node('pattern',{id:'rake-road',patternUnits:'userSpaceOnUse',width:43,height:29});
  const roadImage=node('image',{width:43,height:29});roadPattern.append(roadImage);defs.append(roadPattern);
  function enqueuePath(column,row){
   const i=ground.index(column,row);const pavingId=pavingSelection;
   if(i<0||ground.pending.has(i))return;
   if(pavingId){if(!['grass','path'].includes(cells[i])||paving[i]===pavingId)return;if(window.SadovodCrops.getState().coins<PAVINGS[pavingId].cost){window.dispatchEvent(new CustomEvent('sadovod:action-error',{detail:{message:'Недостаточно рублей для укладки плитки'}}));return;}}else if(cells[i]!=='grass')return;
-  roadImage.setAttribute('href','https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/sand-221.webp');ground.pending.add(i);rakeJobs.set(i,{column,row,pavingId});render();
+  roadImage.setAttribute('href','./assets/surfaces/sand-221.webp');ground.pending.add(i);rakeJobs.set(i,{column,row,pavingId});render();
   actions.enqueue('rake',{column,row}).then(()=>{ground.pending.delete(i);if(pavingId){const result=layPaving({id:pavingId,index:i,cells,paving,spend:n=>window.SadovodCrops.spend(n),paint:()=>ground.paint(column,row,'path')});if(result?.refund)window.SadovodCrops.refund(result.refund);if(result===true)savePaving();else window.dispatchEvent(new CustomEvent('sadovod:action-error',{detail:{message:'Плитка не уложена: проверьте покрытие и баланс'}}));}else ground.paint(column,row,'path');window.SadovodSound?.play('dig');render()}).catch(error=>{ground.pending.delete(i);render();window.dispatchEvent(new CustomEvent('sadovod:action-error',{detail:{message:error.message||'Не удалось проложить дорожку. Попробуйте ещё раз.'}}))}).finally(()=>{const job=rakeJobs.get(i);rakeJobs.delete(i);requestAnimationFrame(()=>{job?.group?.remove();job?.clip?.remove()})});
  }
  window.addEventListener('sadovod:character-frame',e=>{const state=e.detail;if(state.action!=='rake')return;const i=cellIndex(state.column,state.row),job=rakeJobs.get(i);if(!job)return;

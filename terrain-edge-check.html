@@ -7,7 +7,7 @@
 import {terrainMaterial} from './terrain-material.js?v=248';
 const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),status=document.querySelector('#status');let mode='both';
 const load=async src=>{const img=new Image();img.src=src;await img.decode();return img};
-const [grass,earth]=await Promise.all([load('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/terrain-v250/grass-cut.png'),terrainMaterial('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/sand-221.webp',128).then(load)]);
+const [grass,earth]=await Promise.all([load('./assets/terrain-v250/grass-cut.png'),terrainMaterial('./assets/surfaces/sand-221.webp',128).then(load)]);
 // Sample at a fixed world scale. The transparent lower part of the grass
 // sprite exposes the independently drawn soil; the sprite contains no road.
 function draw(){const box=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);const w=box.width,h=box.height;

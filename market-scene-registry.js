@@ -13,7 +13,7 @@ export const CURRENT_SCENES={...GARDEN_SCENES,...PEN_SCENES,...PRODUCT_SCENES,..
 CURRENT_SCENES.pen_cow=PEN_SCENES.pen_cow;
 for(const id of ['rim_workshop','pen_pigeon','pen_undyandyolik'])CURRENT_SCENES[id]=premiumScene(id);
 CURRENT_SCENES.undy_fence={...premiumScene('fence')};
-CURRENT_SCENES.rabbit={...CURRENT_SCENES.rabbit,src:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/market-v196/rabbit-source.webp'};
+CURRENT_SCENES.rabbit={...CURRENT_SCENES.rabbit,src:'./assets/market-v196/rabbit-source.webp'};
 export function cardTemplate(id,kind){
  if(id.startsWith('pen_')||id==='beehive')return 'housing';
  if(kind==='Сад')return 'garden';

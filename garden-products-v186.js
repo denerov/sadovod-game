@@ -29,4 +29,4 @@ GARDEN_PRODUCTS.stakhanov_monument=STAKHANOV_MONUMENT;
 GARDEN_SCENES.stakhanov_monument=STAKHANOV_SCENE;
 
 Object.assign(GARDEN_PRODUCTS.shore_3,{name:'Деревянный причал',rotationLocked:false,renderScale:.72,description:'Низкий настил из деревянных досок на коротких сваях. Установите у берега, чтобы край настила выходил над водой. Четыре ракурса.'});
-GARDEN_SCENES.shore_3={src:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/pier-v268/pier-0.webp',width:512,height:512};GARDEN_PRODUCTS.shore_3.icon=GARDEN_SCENES.shore_3.src;
+GARDEN_SCENES.shore_3={src:'./assets/pier-v268/pier-0.webp',width:512,height:512};GARDEN_PRODUCTS.shore_3.icon=GARDEN_SCENES.shore_3.src;

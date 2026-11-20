@@ -3,7 +3,7 @@
 body[data-screen=character]{overflow:auto;display:block}body[data-screen=character] .stage{display:none}
 .character-screen{width:100%;min-height:100svh;display:grid;place-items:center;background:#183525;color:#153d28;font-family:Georgia,'Times New Roman',serif}
 .character-stage{position:relative;width:min(100vw,calc(100svh * 16 / 9));aspect-ratio:16/9}
-.character-scenery{position:absolute;inset:0;background:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/character-scene.webp') center/100% 100% no-repeat}
+.character-scenery{position:absolute;inset:0;background:url('./assets/character-scene.webp') center/100% 100% no-repeat}
 .avatar-area{position:absolute;left:14.22%;bottom:5.56%;width:30.08%;height:84.72%}
 .avatar{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;opacity:0;filter:blur(3px);transform-origin:50% 100%;transition:opacity .4s ease,filter .4s ease}.avatar.active{opacity:1;filter:none}
 
@@ -43,7 +43,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #966923;outline-offse
  [data-gender=woman]{--left:52.69%;--width:19.92%}[data-gender=man]{--left:73.38%;--width:21.29%}
  .gender-group button[aria-pressed=true]{box-shadow:inset 0 0 0 2px #175437}
  .name-group{left:53.53%;top:42.72%;width:40.19%;height:5.63%;border-radius:.45cqw;container-type:inline-size;overflow:hidden}
- .name-group::before{content:'';position:absolute;inset:0;background-image:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/character-scene.webp');background-size:440cqw auto;background-position:-294.7cqw -108cqw;pointer-events:none}
+ .name-group::before{content:'';position:absolute;inset:0;background-image:url('./assets/character-scene.webp');background-size:440cqw auto;background-position:-294.7cqw -108cqw;pointer-events:none}
  .name-group input{position:relative;min-height:0;background:transparent;padding:0 3cqw;outline-offset:-3px;border-radius:0}
  .outfit-buttons button{position:absolute;left:var(--left);top:55.15%;width:var(--width);height:25.08%;padding:.4cqw .2cqw .5cqw;border-radius:.7cqw;pointer-events:auto;overflow:hidden}
  [data-outfit=linen]{--left:52.57%;--width:9.87%}[data-outfit=overalls]{--left:63.04%;--width:10.17%}[data-outfit=coat]{--left:73.92%;--width:10.17%}[data-outfit=cardigan]{--left:84.81%;--width:10.11%}
@@ -59,7 +59,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #966923;outline-offse
 .character-confirmation .welcome-greeting{font-size:22px;line-height:1.4}
 .character-confirmation .welcome-story{font-size:18px;line-height:1.5;max-width:34ch}
 .character-confirmation .edit-character{background:none;border:0;border-radius:0;color:#174b31;text-decoration:underline;text-underline-offset:4px;font-size:17px;padding:8px 12px}
-.is-welcome .character-scenery{background-image:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/welcome-garden.webp')}
+.is-welcome .character-scenery{background-image:url('./assets/welcome-garden.webp')}
 .is-welcome .character-stage{overflow:hidden}
 @media(min-width:901px) and (min-height:501px){
  .is-welcome .character-scenery{right:49%;background-size:100% auto;background-position:center top}
@@ -70,7 +70,7 @@ button:focus-visible,input:focus-visible{outline:3px solid #966923;outline-offse
 }
 @media(max-width:900px),(max-height:500px){
  .character-stage{padding-top:0;padding-bottom:calc(20px + env(safe-area-inset-bottom));gap:0}
- .character-scenery{height:min(112vw,460px);background-image:url('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/welcome-garden.webp');background-size:100% auto;background-position:center top;box-shadow:inset 0 -20px 20px -15px #fff3dc}
+ .character-scenery{height:min(112vw,460px);background-image:url('./assets/welcome-garden.webp');background-size:100% auto;background-position:center top;box-shadow:inset 0 -20px 20px -15px #fff3dc}
  .avatar-area{width:auto;height:min(82vw,335px);aspect-ratio:450/724;margin:min(20vw,82px) 0 min(10vw,41px);filter:drop-shadow(0 4px 2px #29200f30)}
  .avatar{object-fit:contain}
  .character-form{margin-top:0;padding:16px 14px}

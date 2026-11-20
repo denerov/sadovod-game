@@ -12,7 +12,7 @@ export function createRakeEffects(plot){
   else g.append(node('ellipse',{rx:.45+rand(i)*.55,ry:.28+rand(i+2)*.35,fill:['#624020','#89623a','#a17b48'][i%3]}));
   group.append(g);return {g,img};
  });
- function warm(){if(loaded)return;const preload=new Image();preload.src='https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/grass-tufts-v69.webp';particles.forEach(p=>p.img?.setAttribute('href',preload.src));loaded=true}
+ function warm(){if(loaded)return;const preload=new Image();preload.src='./assets/surfaces/grass-tufts-v69.webp';particles.forEach(p=>p.img?.setAttribute('href',preload.src));loaded=true}
  window.addEventListener('sadovod:tool-selected',e=>{if(e.detail.action==='rake')warm()});
  function clear(){group.style.display='none'}
  function update(state){

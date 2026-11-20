@@ -1,6 +1,6 @@
 import {TerrainPainter} from './terrain-painter.js?v=242';
 const sources={grass:'grass-farmandia-v227.webp',road:'path-farmandia-v1.webp',water:'water-farmandia-v227.webp',stones:'pebbles-v60.webp',soil:'bed-221.webp'};
-const load=async name=>{const image=new Image();image.decoding='async';image.src='https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/surfaces/'+name;await image.decode();return image};
+const load=async name=>{const image=new Image();image.decoding='async';image.src='./assets/surfaces/'+name;await image.decode();return image};
 export function terrainPixelRatio(width,height,dpr=1,coarse=false){return width>0&&height>0?Math.min(dpr||1,3,Math.sqrt((coarse?5000000:6000000)/(width*height))):1}
 export class TerrainRenderer{
  constructor(target){this.target=target;this.revision=0;this.frame=0;this.images={};this.loads=new Map()}

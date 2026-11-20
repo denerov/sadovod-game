@@ -4,7 +4,7 @@ import {timeLabel} from './crop-model.js?v=210';
 import {spriteBox} from './decor-model.js?v=268';
 const notice=message=>window.dispatchEvent(new CustomEvent('sadovod:action-error',{detail:{message}}));
 let visuals=null;
-fetch('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/wine-v137/vineyard-stages.json?v=182').then(r=>{if(!r.ok)throw Error('Wine artwork');return r.json();}).then(v=>{visuals=v;update();}).catch(()=>notice('Не удалось загрузить винодельню. Обновите страницу.'));
+fetch('./assets/wine-v137/vineyard-stages.json?v=182').then(r=>{if(!r.ok)throw Error('Wine artwork');return r.json();}).then(v=>{visuals=v;update();}).catch(()=>notice('Не удалось загрузить винодельню. Обновите страницу.'));
 function activate(o){const r=window.SadovodCrops?.activateWine(o);if(!r||r.action==='working'||r.action==='growing')return;if(r.action==='collect'||r.action==='harvest'){window.SadovodHarvest?.notify({name:r.action==='harvest'?'Виноград':'Коктебель',type:r.action==='harvest'?'grape':'wine',count:r.count});return;}notice(r.action==='working'?'До готовности вина: '+timeLabel(r.remaining):r.action==='growing'?'До сбора винограда: '+timeLabel(r.remaining):r.action==='missing'?`Нужно ${r.input} винограда. Соберите урожай с виноградника.`:r.action==='unconfigured'?'Рецепт ещё не назначен.':`Винодельня запущена. Вино через ${WINERY.minutes} реальных минут.`);}
 function decorate(g,o,box,state){
  if(!['winery','vineyard'].includes(o.type))return;state??=window.SadovodCrops?.getState();if(!state)return;const vine=o.type==='vineyard',f=(vine?state.wine.vines:state.wine.factories)[o.id],ready=vine?!!f&&f.remaining<=0:!!f?.ready,working=!vine&&!!f&&!ready;

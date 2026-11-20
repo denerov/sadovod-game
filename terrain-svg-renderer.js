@@ -114,9 +114,9 @@ function defs(ids){
   pattern(ids.grass,160,160,[el('rect',{width:160,height:160,fill:'#238b23'})]),
   pattern(ids.path,64,64,[el('rect',{width:64,height:64,fill:'#b5a17b'})]),
   pattern(ids.water,192,192,[el('rect',{width:192,height:192,fill:'#1899c2'})]),
-  pattern(ids.shore,32,32,[el('rect',{width:32,height:32,fill:'#806c43'}),el('image',{href:'https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/terrain-v252/earth.png',width:32,height:32,opacity:'.28'})])
+  pattern(ids.shore,32,32,[el('rect',{width:32,height:32,fill:'#806c43'}),el('image',{href:'./assets/terrain-v252/earth.png',width:32,height:32,opacity:'.28'})])
  );
- for(const [id,material,size]of [[ids.grass,terrainMaterial('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/terrain-v252/grass-cut.png',192,.60),52],[ids.path,terrainMaterial('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/terrain-v252/earth.png',256),56],[ids.water,waterMaterial(),192]]){
+ for(const [id,material,size]of [[ids.grass,terrainMaterial('./assets/terrain-v252/grass-cut.png',192,.60),52],[ids.path,terrainMaterial('./assets/terrain-v252/earth.png',256),56],[ids.water,waterMaterial(),192]]){
   const p=out.querySelector('#'+id);material.then(href=>{p.setAttribute('width',size);p.setAttribute('height',size);p.replaceChildren(el('image',{href,width:size,height:size,preserveAspectRatio:'none'}));window.dispatchEvent(new Event('sadovod:terrain-material-ready'))}).catch(error=>console.error('Terrain material',error));
  }
  return out;

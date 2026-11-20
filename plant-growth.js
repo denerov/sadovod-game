@@ -1,7 +1,7 @@
 import {plantStage,GROWING_PLANTS} from './plant-growth-model.js?v=264';
 import {loadSprite} from './sprite-cache.js?v=214';
 let catalog={};
-const catalogReady=fetch('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/growth-v264/catalog.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(data=>{catalog=data;window.dispatchEvent(new Event('sadovod:plant-art-ready'));return data});
+const catalogReady=fetch('./assets/growth-v264/catalog.json').then(r=>{if(!r.ok)throw Error(r.status);return r.json()}).then(data=>{catalog=data;window.dispatchEvent(new Event('sadovod:plant-art-ready'));return data});
 export async function ensurePlantArt(type,rotation=0){if(!GROWING_PLANTS.has(type))return;await catalogReady;const frame=catalog[type]?.[0]?.[rotation];if(frame)await loadSprite(frame.src)}
 window.SadovodPlantArt=Object.freeze({seedlingFrames:type=>catalog[type]?.[0]});
 export function decoratePlant(group,o,box,state){

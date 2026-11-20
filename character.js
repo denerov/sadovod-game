@@ -8,12 +8,12 @@
   const labels={linen:'Лён',overalls:'Комбинезон',coat:'Пальто',cardigan:'Кардиган'};
   const key='sadovod.character.v1';
   let state={gender:'woman',outfit:'linen'},active=0,revision=0;
-  const asset=(g,o)=>`https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/characters/${g}-${o}.webp`;
+  const asset=(g,o)=>`./assets/characters/${g}-${o}.webp`;
   const images=new Map();
   function imageFor(src){if(!images.has(src)){const image=new Image();image.src=src;images.set(src,image)}return images.get(src)}
   function readProfile(){try{const p=JSON.parse(localStorage.getItem(key));return p&&genders.includes(p.gender)&&outfits.includes(p.outfit)&&typeof p.name==='string'&&p.name.trim().length>0&&p.name.length<=24&&!/[\u0000-\u001f\u007f]/.test(p.name)?p:null}catch{return null}}
   const initial=readProfile();
-  const preload=initial?Promise.resolve():Promise.allSettled([imageFor('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/character-scene.webp').decode(),imageFor('https://sadovod-webgl-engine-test.ddenerov.chatgpt.site/assets/welcome-garden.webp').decode(),imageFor(asset(initial?.gender||'woman',initial?.outfit||'linen')).decode()]);
+  const preload=initial?Promise.resolve():Promise.allSettled([imageFor('./assets/character-scene.webp').decode(),imageFor('./assets/welcome-garden.webp').decode(),imageFor(asset(initial?.gender||'woman',initial?.outfit||'linen')).decode()]);
   async function render(){
     const rev=++revision,src=asset(state.gender,state.outfit);
     root.querySelectorAll('[data-gender]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.gender===state.gender)));
